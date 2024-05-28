@@ -1,0 +1,64 @@
+//Estilos para tabs
+.tab-navs{
+    position: relative;
+    width: 100%;
+    margin-bottom: 45px;
+    padding-bottom: 5px;    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        bottom: 9px;
+        left: 0;
+        background-color: #D5D5D5;
+    }
+    .tabs{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding-bottom: 5px;
+        .item{
+            .tab-item{
+                cursor: pointer;
+                position: relative;
+                width: max-content;
+                padding: 12px 15px;
+                background-color: transparent;
+                @include defaultFont(1, $fz: 14px, $c: $blues3, $fw:600);
+                &:hover{
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: -1px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: #D5D5D5;
+                        z-index: 2;
+                    }
+                }
+                &.active{
+                    color: $lighBluePrimary;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: -1px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: $lighBluePrimary;
+                        z-index: 2;
+                    }
+                }
+            }            
+        }
+    }
+}

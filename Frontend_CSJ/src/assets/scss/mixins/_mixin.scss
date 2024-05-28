@@ -1,0 +1,109 @@
+@mixin defaultFont($d, $ff: 'init', $fz: 'init', $fw: 'init', $lh: 'init', $ta: 'init', $c: 'init', $fs: 'init') {
+    @if $d==1 {
+        @include allProperty($ff, $fz, $fw, $lh, $ta, $c, $fs);
+    }
+    @else {
+        @include partiallyProperty($ff, $fz, $fw, $lh, $ta, $c, $fs);
+    }
+}
+
+// Mixin para agregar todas las propiedades de las fuentes
+@mixin allProperty($ff, $fz, $fw, $lh, $ta, $c, $fs) {
+    @if $ff=='init' {
+        $ff: $worksans
+    }
+    @if $fz=='init' {
+        $fz: $font-p
+    }
+    @if $fw=='init' {
+        $fw: regular
+    }
+    @if $ta=='init' {
+        $ta: left
+    }
+    @if $c=='init' {
+        $c: $text-color
+    }
+    @if $fs=='init' {
+        $fs: normal
+    }
+    $FzContent: inspect($fz);
+    @if ends-with($FzContent, 'px') {
+        @if $lh=='init' {
+            $lh: $fz + 2;
+        }
+    }
+    @else {
+        @if $lh=="init" {
+            $lh: initial;
+        }
+    }
+    @if map-has-key($mapFW, $fw) {
+        $fw: map-get($mapFW, $fw)
+    }
+    //Normal properties
+    font-family: $ff;
+    font-size: $fz;
+    line-height: $lh;
+    font-weight: $fw;
+    text-align: $ta;
+    font-style: $fs;
+    color: $c;
+}
+
+// Mixin para agregar propiedades ralativas a las fuentes
+@mixin partiallyProperty($ff, $fz, $fw, $lh, $ta, $c, $fs) {
+    @if map-has-key($mapFW, $fw) {
+        $fw: map-get($mapFW, $fw)
+    }
+    @if $ff !='init' {
+        font-family: $ff
+    }
+    @if $fz !='init' {
+        font-size: $fz
+    }
+    @if $lh !='init' {
+        line-height: $lh
+    }
+    @if $fw !='init' {
+        font-weight: $fw
+    }
+    @if $ta !='init' {
+        text-align: $ta
+    }
+    @if $c !='init' {
+        color: $c
+    }
+    @if $fs !='init' {
+        font-style: $fs
+    }
+}
+
+/// Grid mixins
+//Mixins
+@mixin make-container() {
+    width: 100%;
+    padding-right: ($grid-gutter / 2);
+    padding-left: ($grid-gutter / 2);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@mixin make-row() {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: ($grid-gutter / -2);
+    margin-left: ($grid-gutter / -2);
+}
+
+@mixin make-grid-system($mq) {
+    .#{ $mq} {
+        flex: 1 0 0;
+    }
+    @for $col from 1 through $grid-columns {
+        .#{ $mq }-#{ $col } {
+            flex: 0 0 (100% / $grid-columns) * $col;
+            max-width: (100% / $grid-columns) * $col;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+.iframe {
+    display: block;
+    margin-bottom: 50px;
+}
+
+.iframe iframe {
+    display: block;
+}

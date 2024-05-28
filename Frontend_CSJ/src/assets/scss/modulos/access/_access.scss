@@ -1,0 +1,33 @@
+/*Estilos para el tabulador de accesibilidad*/
+
+.menu-access{
+    position: fixed;
+    top: 40px;
+    left: 15px;
+    z-index: 3;
+    .list-access{
+        position: relative;
+        li{
+            margin: 5px 0;
+            a{
+                opacity: 0;
+                background-color: #FFF;
+                border-radius: 5px;
+                list-style: none;
+                border: 1px solid #ccc;
+                padding: 5px 15px;
+                text-decoration: none;
+                font-size: 14px;
+                width: 150px;
+                text-align: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                &:active, &:focus{
+                    text-decoration: underline;
+                    opacity: 100;
+                }
+            }
+        }
+    }
+}

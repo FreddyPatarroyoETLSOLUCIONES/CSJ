@@ -1,0 +1,65 @@
+/* Estos estilos son para ajustar las visuales que genera Angular */
+.multiselect-dropdown .dropdown-btn {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: column !important;
+  height: 45px;
+  line-height: 30px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  border-radius: 10px !important;
+  border: 1px solid #C9C9C9 !important;
+}
+.multiselect-dropdown .dropdown-btn::-webkit-scrollbar {                  
+  height: 4px;
+}
+.multiselect-dropdown .dropdown-btn::-webkit-scrollbar-thumb {
+  background-color: #c9c9c9;
+  border-radius: 2px;
+  border: 1px solid #FFF;
+}
+.dropdown-btn .selected-item {
+  display: inline-block !important;
+  min-width: max-content;
+  border-radius: 15px !important;
+  background-color: #37424d !important;
+  border: 0 !important;
+  margin-right: 5px;
+  font-size: 14px;
+}
+.dropdown-btn .selected-item:last-of-type{
+  margin-right: 45px !important;
+}
+.dropdown-list {
+  margin-top: 0 !important;
+  border: 1px solid #C9C9C9 !important;
+  border-radius: 10px !important;
+}
+
+//Estilos DEV
+.font-weight-bold {
+  color: yellowgreen !important;
+}
+.font-search {
+  font-weight: 700 !important;
+}
+.list-group-item{
+  margin-bottom: 15px !important;
+  cursor: pointer;
+  text-align: justify !important;
+  border-bottom: 1px solid Gainsboro;
+}
+.scroll{
+  background-color: rgb(249,248,248);
+  padding: 2px;
+  width: 720px;
+  height: 500px;
+  overflow: scroll;
+}  
+.snippet-image {
+  float: left;
+}
+.image-snippet-with {
+  max-width: 100px; 
+  border-radius: 5px;
+}

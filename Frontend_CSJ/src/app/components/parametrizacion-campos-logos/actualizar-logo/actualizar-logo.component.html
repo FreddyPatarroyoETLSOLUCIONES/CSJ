@@ -1,0 +1,79 @@
+<div class="tab-content">
+    <div class="filters"></div>
+    <div class="advFilter"></div>
+    <div class="updateLogo">                 
+        <div class="table-responsive mt-30px">
+            <table class="mainTable" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Corporación</th>
+                        <th scope="col" class="ta-center">Imagen</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let element of logos" > 
+                        <tr>
+                            <td>{{element.corporation.name}}</td>
+                            <td class="ta-center">
+                                <img class="img-thumb" src="{{element.image_base64}}" alt="">
+                            </td>
+                            <td>
+                                <button class="edit" (click)="modalEditar(element.corporation.id , element.corporation.name)"></button>
+                            </td>
+                        </tr>
+
+                    </ng-container>   
+
+                </tbody>
+
+            </table>
+        </div> 
+    </div>
+</div>  
+<div id="Modal" class="modal modal-xl" [ngStyle]="{'display': flagModalEditar ? 'block' : 'none'}">
+    <!-- Modal content -->
+    <div class="modal-content-small">
+        <div class="modal-header">
+            <button class="close-modal" (click)="modalEditar()"></button>
+            <h2>{{nameCorporation}}</h2>
+        </div>
+        <div class="modal-body scrolled">
+            <form action="" class="formApp">
+                <p class="fw-semibold fz-18px mb-30px">Edite la imagen de la corporación.</p>
+                <p class="fw-semibold fz-12px" *ngIf="errorImg == true" style="color: red">{{messaggeError}}</p>
+                <div class="form-group">
+                    <div class="file-input" >
+                        <label class="uploader" ondragover="return false;"
+                        [class.loaded]="loaded" 
+                        (dragenter)="handleDragEnter()"
+                        (dragleave)="handleDragLeave()"
+                        (drop)="handleDrop($event)" >
+                        <br>
+                        <img 
+                        [src]="imageSrc" 
+                        (load)="handleImageLoad()" 
+                        [class.loaded]="imageLoaded"/>
+                        </label>
+                    </div>
+                    <br>
+
+                    <div class="control loaded">
+                        <input class="form-control-input" type="file" id="formFile"  (change)="handleInputChange($event)">   
+                        <span class="label-input"><!--reemplazar por nombre de la img-->{{fileImgName}}</span>
+                    </div>
+
+                    <div class="helper-text d-flex align-center">
+                        <img src="../../media/icons/ic-caution.svg" class="mr-5px" alt="">
+                        <p class="fz-12px">Suba una imagen en formato SVG, JPG o PNG de 56×56 Máximo 4MB.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-text"  (click)="modalEditar()" aria-label="Cerrar ventana">Cancelar</button>
+            <button class="btn blue" aria-label="Guardar cambios" (click)="saveLogo()" [ngStyle]="{'display': !errorImg ? 'block' : 'none'}" >Guardar</button>
+        </div>
+    </div>
+
+</div>

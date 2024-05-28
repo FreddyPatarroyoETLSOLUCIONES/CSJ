@@ -1,0 +1,45 @@
+<!-- #region modal -->
+<div id="Modal" class="modal" style="display: block;">
+    <!-- Modal content -->
+    <div class="modal-content-small">
+        <div class="modal-header-login">
+            <button type="button" aria-label="Cerrar login" (click)="closeLogin()" class="close-modal"></button>
+            <img src="../../../assets/img/logoRamaJudicial.png" alt="" class="img-login">
+        </div>
+        <div class="modal-body scrolled">
+            <h2>Autenticación de usuarios</h2>
+            <form #form="ngForm" action="" class="formApp my-45px">
+                <div class="form-group">
+                    <label for="nombUser" class="form-label">Usuario</label>
+                    <input type="text" id="nombUser" class="form-control" name="username" [(ngModel)]="user.username" aria-label="Nombre de usuario" placeholder="Nombre de usuario" required maxlength="50" aria-labelledby="label-nombUser">
+                </div>
+                <div class="form-group">
+                    <label for="Contrasena" class="form-label">Contraseña</label>
+                    <input type="{{type}}" id="Contrasena" class="form-control" name="password" [(ngModel)]="user.password" aria-label="Escriba su contraseña" placeholder="Escriba su contraseña" required maxlength="50" aria-labelledby="label-Contrasena">
+                    <button (click)="changeType()" type="button" class="form-button" [ngClass]="{'pass': type==='password', 'pass-off': type==='text'}" aria-label="Ocultar o mostrar contraseña" aria-labelledby="label-Contrasena"></button>
+                </div>
+                <!--<div class="form-group" aria-labelledby="label-recaptcha">
+                    <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="user.recaptcha" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" aria-label="Captcha"></re-captcha>
+                </div> -->
+                <div class="form-check">
+                    <input type="checkbox" name="confirm_check" [(ngModel)]="confirm_check" id="jurisprudencia" class="form-check-input" required>
+                    <label for="jurisprudencia" class="form-label">
+                        <span class="fw-regular">He leído la <a target="_blank" href="https://www.ramajudicial.gov.co/portal/politicas-de-privacidad-y-condiciones-de-uso#:~:text=LA%20RAMA%20JUDICIAL%20no%20compartir%C3%A1,Gaceta%20de%20Foro%2C%20Sistema%20Integrado" class="ct-lighBluePrimary">Política de tratamiento de datos personales</a> y acepto el tratamiento de mis datos personales.</span>
+                    </label>
+                </div>
+                <div class="captcha my-30px">
+                    <!--Aquí va la captcha-->
+                </div>
+
+                <div class="mensaje" *ngIf="form_validation">
+                    <p class="ct-redPrimary">{{mensaje}}</p>
+                </div>
+            </form>
+            <div class="box-buttons">
+                <button type="button" (click)="login()" class="btn blue btn-block mb-15px" aria-label="Iniciar sesión" aria-labelledby="label-loginButton">Iniciar sesión</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- #endregion -->

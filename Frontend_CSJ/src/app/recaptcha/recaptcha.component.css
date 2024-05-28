@@ -1,0 +1,15 @@
+re-captcha.is-invalid > div {
+    border: 1px solid #dc3545 !important;
+    border-radius: 0.2rem;
+  }
+
+  .formClass{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

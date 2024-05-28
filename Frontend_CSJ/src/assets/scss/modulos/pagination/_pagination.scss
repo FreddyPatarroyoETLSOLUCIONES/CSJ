@@ -1,0 +1,55 @@
+//Paginador
+.pagination-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    nav{
+        width: auto;
+        .pagination{
+            display: flex;
+            padding-left: 0;
+            list-style: none; 
+            .page-item{
+                margin-left: 15px;
+                .page-link{
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 3px;
+                    padding: 5px;
+                    position: relative;
+                    display: block;
+                    color: #67676E;
+                    text-decoration: none;                                        
+                    font-weight: 600;
+                    text-align: center;
+                    line-height: 20px;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                &.active{
+                    .page-link{
+                        background-color: #3366CC;
+                        color: #FFF;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+                &.previous, &.next{
+                    border-radius: 3px;
+                    background-color: transparent;
+                    color: #FFF;
+                    line-height: 23px;
+                    &.disabled{                        
+                        background-color: #E6E6E6;
+                        .page-link{
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }       
+    }
+}

@@ -1,0 +1,191 @@
+//Estilos para tablas hechas con divs
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 25px;
+    padding: 15px;
+    .row {
+        background: #FFF;
+        &.header {
+            background: #F8F9FC;
+            p {
+                @include defaultFont(1, $fz: 12px, $fw: bold, $lh: normal);
+            }
+        }
+        .table-cell {
+            padding: 15px;
+            color: #272829;
+            line-height: 24px;
+        }
+    }
+    &-odd {
+        @extend .table;
+        .row {
+            &:nth-child(odd) {
+                background: #F8F9FC;
+            }
+            &:nth-child(even) {
+                background: #FFF;
+            }
+            .table-cell {
+                @extend .table-cell;
+                .label-cell {
+                    margin-bottom: 3px;
+                    display: block;
+                    @include defaultFont(1, $fz: 12px, $fw: bold);
+                }
+                a {
+                    color: #6681B0;
+                    text-decoration: underline;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        color: #2F4B7C;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Estilos para etiquetas <table>
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    .mainTable, .clone-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        &.organized{
+            thead{
+                td, th{
+                    position: relative;
+                    cursor: pointer;
+                    padding-right: 15px;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: unset;
+                        right: 5px;
+                        width: 15px;
+                        height: 15px;
+                        background: url(../media/icons/ic-organize.svg) no-repeat center;
+                        margin-left: 5px;
+                        display: inline-flex;
+                    }            
+                }
+            }
+        }
+        &.bordered{
+            border: 1px solid #EDEFF5;
+        }
+        thead { 
+            background: #D3E1EE;
+            td,
+            th {
+                @include defaultFont(1, $fz: 12px, $fw: bold, $lh: normal);
+                .btn-reorder{
+                    cursor: pointer;                    
+                    width: 15px;
+                    height: 15px;
+                    background: url(../media/icons/ic_reorder.svg) no-repeat bottom center;
+                } 
+            }
+        }
+        tbody {
+            background: #FFF;
+            border: 0;
+            & > tr{
+                transition: .25s all;
+                &:hover{
+                    background-color: #F2F2F2;
+                }
+                &.drop-content{                    
+                    background-color: #F0F2F5;
+                    thead{
+                        background-color: #e1e1e1;
+                    }
+                    & > td{
+                        padding: 15px 30px;
+                    }
+                }
+            }
+        }
+        td, 
+        th {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #EEEEEE;
+            button{
+                cursor: pointer;
+                width: 25px;
+                height: 25px;
+                display: inline-block;
+                margin-left: 15px;
+                &.edit{
+                    background: url(../media/icons/ic_edit.svg) no-repeat center;
+                    background-size: contain;
+                }
+                &.btn-drop{
+                    background: url(../media/icons/ic_arrow_down.svg) no-repeat center;
+                    background-size: contain;
+                    &.active{
+                        transform: rotate(180deg);
+                    }
+                }
+                &.do-search{
+                    color: $lighBluePrimary;
+                    padding-left: 25px;
+                    background: url(../media/icons/ic_search_blue.svg) no-repeat;
+                    background-position: left center;
+                    min-width: max-content;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .box-button{
+                display: flex;
+                align-items: center;
+                min-height: 100%;
+            }
+            .img-thumb{
+                max-height: 56px;
+            }
+        }
+        a {
+            color: #4B0093;
+            text-decoration: underline;
+            display: block;
+            &:hover,
+            &:focus,
+            &:active {
+                color: #15151D;
+            }
+            &.link-icon{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        }
+        &--striped {
+            @extend .mainTable;
+            tbody {
+                tr {
+                    &:nth-child(even) {
+                        background: rgba(0, 0, 0, .025);
+                    }
+                    &:nth-child(odd) {
+                        background: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}

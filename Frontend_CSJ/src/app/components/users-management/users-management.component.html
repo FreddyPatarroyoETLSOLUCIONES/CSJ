@@ -1,0 +1,95 @@
+<main class="container pb-50px">
+    <h2 class="ct-bluePrimary fz-22px fw-bold mb-0px">Administración de usuarios</h2>
+    <div class="advFilter">
+        <p class="fz-18px ct-bluePrimary mb-30px">Seleccione un criterio para filtar</p>
+        <form action="" class="formApp">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombApellido" class="form-label" id="labelNombApellido">Nombre y apellido</label>
+                        <input [(ngModel)]="full_name" name="full_name" type="text" id="nombApellido" class="form-control" aria-label="Escriba un criterio" placeholder="Escriba un criterio" aria-labelledby="labelNombApellido" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="usuarios" class="form-label" id="labelUsuarios">Usuario</label>
+                        <input [(ngModel)]="username" name="username" type="text" id="usuarios" class="form-control" aria-label="Escriba un criterio" placeholder="Escriba un criterio" aria-labelledby="labelUsuarios" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group-dropdown">
+                        <label for="rol" class="form-label" id="labelRol">Rol</label>
+                        <select [(ngModel)]="roles" name="rol" id="rol" class="dropdown form-control" title="Rol" tabindex="0" placeholder="seleccione" aria-label="Seleccione un rol" aria-labelledby="labelRol">
+                            <option value='' [selected]="" aria-selected="true">Seleccione...</option>
+                            <option value='{administrador, usuario_interno, administrador_funcional}'>Todos</option>
+                            <option value= '{administrador}'>Administrador</option>
+                            <option value= '{administrador_funcional}'>Administrador funcional</option>
+                            <option value= '{usuario_interno}'>Usuario interno</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div *ngIf="!busquedaValida">
+                        <p class="ct-redPrimary">Por favor seleccione por lo menos un criterio de consulta</p>
+                    </div>
+
+                    <div *ngIf="!full_name_valid">
+                        <p class="ct-redPrimary">Por favor ingresar más criterios de consulta o ampliar el texto a buscar</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <section class="submit-search">
+            <!--Botón de ejecución de la búsqueda-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <button (click)="buscar()" type="button" class="btn bg-bluePrimary ct-white btn-block" aria-label="Buscar">Buscar</button>
+                    <button (click)="limpiarFiltros()" role="button" class="btn btn-text-blue btn-block" aria-label="Limpiar campos de filtros">Limpiar Búsqueda</button>
+                </div>
+            </div>
+        </section>
+        <section class="results-search-user mb-70px" *ngIf="users?.length > 0">
+            <div class="table-responsive mt-30px">
+              <table class="mainTable" cellspacing="0" cellpadding="0">
+                <thead>
+                  <tr>
+                    <th (click)="reordearColumnas('full_name')" scope="col">Nombres y apellidos <button type="button" aria-label="Organizar" class="btn-reorder"></button> </th>
+                    <th (click)="reordearColumnas('username')" scope="col">Usuario <button type="button" aria-label="Organizar" class="btn-reorder"></button> </th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.full_name}}</td>
+                    <td>
+                      <label [for]="'usernameInput-' + user.id">Usuario</label>
+                      <input [id]="'usernameInput-' + user.id" type="text" aria-labelledby="" name=""/>
+                      <div [id]="'usernameInputLabel-' + user.id" class="sr-only">{{user.username}}</div>
+                    </td>
+                    <td>
+                      <ul *ngFor="let rol of user.roles">
+                        <li>{{rol}}</li>
+                      </ul>
+                    </td>
+                    <td>
+                      <span [id]="'estadoLabel-' + user.id" class="sr-only">Estado: </span>
+                      <span [id]="'estadoValor-' + user.id" *ngIf="user.is_active">Activo</span>
+                      <span [id]="'estadoValor-' + user.id" *ngIf="!user.is_active">Inactivo</span>
+                    </td>
+                    <td>
+                      <div class="box-button">
+                        <button (click)="editarUsuario(user)" class="edit"></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        <section class="results-search-user mb-70px" *ngIf="users?.length == 0">
+            <p class="fz-18px mt-30px">No se encontraron resultados para su búsqueda.</p>
+        </section>
+    </div>
+</main>

@@ -1,0 +1,72 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 14px;
+    input{
+        opacity: 0;
+        width: 0;
+        height: 0;
+        &:checked + .slider {            
+            &::before {
+                background-color: $lighBluePrimary;
+                transform: translateX(23px);
+            }
+                
+        }
+        &:checked:disabled~.slider{
+            &::before{
+                background-color: #979797;
+            }
+        }     
+    }
+    .slider{
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #d9d9d9;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border: 1px solid #E7E7E7;
+        &.round {
+            border-radius: 50px;
+            &::before {
+                border-radius: 50%;
+            }
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: -5px;
+            bottom: -4px;
+            background-color: #FAFAFC;
+            -webkit-transition: .4s;
+            transition: .4s;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.delete{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url(../media/icons/ic-trash.svg) no-repeat center;
+}
+.eraser{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url(../media/icons/ic-eraser.svg) no-repeat center;
+}
+.edit{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url(../media/icons/ic-action-edit.svg) no-repeat center;
+}

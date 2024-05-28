@@ -1,0 +1,17 @@
+//Cabecera principal
+.main-header{
+    margin-top: 26px;
+    .col-lg-10{
+        img{
+            width: 100px;
+        }
+    }
+    .col-lg-2{
+        img{
+            display: block;
+            width: 65px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+    }
+}

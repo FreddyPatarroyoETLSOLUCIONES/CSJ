@@ -1,0 +1,127 @@
+<form action="" class="formApp" [formGroup]="generalForm">
+    <div class="row align-flex-start">
+        <div class="col-lg-8 ">
+            <div class="form-group">
+                <label for="nameSearch" class="form-label pr-70px">Buscar</label>
+                <input type="text" id="nameSearch" formControlName="nameSearch" class="form-control pr-70px" aria-label="Ingrese mínimo tres caracteres para realizar la búsqueda." placeholder="Escriba para buscar">
+                <button type="button" class="form-button search" aria-label="Buscar" (click)="searchFiltroGeneralBusqueda()"></button>
+            </div>                        
+        </div>
+
+        <div class="col-lg-4 ta-right">
+            <p class="mt-35px"><strong>{{historicoCantidad}}</strong> Resultados</p>
+        </div>
+    </div> 
+
+
+    <div class="table-responsive mt-30px">  
+        <table class="mainTable" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del campo</th>
+                    <th scope="col" class="ta-right">Fecha actualización</th>
+                    <th scope="col">Texto de ayuda (Tooltip)</th>
+                    <th scope="col">Actualizado por</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let element of paramToolTips" > 
+                    <tr>
+                        <td>{{element.campo}}</td>
+                        <td class="ta-right">{{element.updated_at | date: 'dd/MM/yyyy'}}</td>
+                        <td style="max-width:400px; word-wrap: break-word;">{{element.tooltip}}</td>
+                        <td>{{element.updated_by}}</td>
+                        <td  class="box-button">
+                            <!--<button class="btn-drop" (click)='toggleShowTable()'></button>-->
+                            <button class="edit" (click)="modalEditar(element.tooltip, element.internal_id)"></button>
+                        </td>
+                    </tr>
+                </ng-container>                 
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="row align-flex-end mb-30px">
+        <div class="col-md-3">
+           
+                <div class="form-group mini mb-0px">
+                    <select name="registrosPorPaginaHistoricoSelect" id="registrosPorPaginaHistoricoSelect" class="form-control" (change)="changePaginadoFiltroGeneralBusqueda()" formControlName="registrosPorPaginaHistoricoSelect"  aria-label="Seleccione una cantidad para mostrar">
+                        <option value="10" selected="selected">Mostrando 10</option>
+                        <option value="50">Mostrando 50</option>
+                        <option value="100">Mostrando 100</option>
+                    </select>
+                </div>
+       
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="pagination-container mb-0px">
+                <nav>
+                    <ul class="pagination">
+                        <li [ngClass]="resultConsult?.previous_page == null  ? 'page-item previous disabled' : 'page-item previous'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(1)" >
+                                <img src="/assets/media/icons/ic-arrow-previous-last.svg" alt="">
+                            </a>
+                        </li>
+                        <li [ngClass]="resultConsult?.previous_page == null   ? 'page-item previous disabled' : 'page-item previous'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaActual - 1)" >
+                                <img src="/assets/media/icons/ic-arrow-previous.svg" alt="">
+                            </a>
+                        </li>
+
+                        <ng-container *ngFor="let element of historicoPaginaArray">    
+                            <li class="page-item">
+                                <a class="page-link"  [ngStyle] = "{'color': currentPage == element ? '#3366CC' : 'black'}"  href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(element)" >{{element}}</a>
+                            </li> 
+                        </ng-container>    
+            
+
+                        <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaActual + 1)" >
+                                <img src="/assets/media/icons/ic-arrow-next.svg" alt="">
+                            </a>
+                        </li>
+                        <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaTotal)" >
+                                <img src="/assets/media/icons/ic-arrow-next-last.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>        
+
+    </div>
+<div id="ModalEditar" class="modal modal-lg" [ngStyle]="{'display': flagModalEditar ? 'block' : 'none'}">
+        <!-- Modal content -->
+        <div class="modal-content  modal-lg">
+            <div class="modal-header"> 
+                <!--<button class="close-modal" ></button>-->
+                <h2>Tema</h2>
+            </div>
+            <div class="modal-body scrolled">
+                <div style="color:red" [ngStyle]="{'display': errorInput ? 'block' : 'none'}">El texto del texto de ayuda (Tooltip), no puede exceder los 200 carácteres.</div>
+                <p class="fw-medium ct-bluePrimary mb-20px">Edite el texto de ayuda (Tooltip) y guarde los cambios.</p>
+    
+                <div class="form-group">
+                    <input type="text"  maxlength="200"  (keyup)="validateToolTipLength()" class="form-control" formControlName="toolTipInput"  id="toolTipInput" name="toolTipInput"  aria-label="Escriba una descripción" placeholder="Escriba una descripción" value="Digite el radicado único nacional (23 dígitos), o el radicado interno.">
+                    <div class="d-flex justify-flex-end">
+                        <span class="fz-12px mt-5px">{{toolTipLength}}/200</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer"> 
+                <button class="btn btn-text close" aria-label="Cerrar ventana" (click)="modalEditar()">Cancelar</button>
+                <button [disabled]="errorInput == true" class="btn blue close" aria-label="Guardar registro" (click)="updateDataByIdInternalId()">Guardar</button> 
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+

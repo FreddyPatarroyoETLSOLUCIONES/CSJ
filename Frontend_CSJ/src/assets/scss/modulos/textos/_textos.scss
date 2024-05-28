@@ -1,0 +1,131 @@
+//Titulos genericos para todos los elementos
+%h {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    @include defaultFont(1, $fz: $font-n, $fw: bold, $ta: center, $c: #404142);
+}
+
+//Clase específica títulos del contentBox
+.main-title {
+    @extend %h;
+    @include defaultFont(0, $lh: 20px);
+    width: 100%;
+    margin-bottom: 16px;
+    @include defaultFont(0, $fw: 700, $fz: 34px, $ta: left, $lh: 40px, $ff: $montserrat);
+    //titulo o texto descriptivo por lo general va despues de un traking
+    &-medium {
+        @extend .main-title;
+        @include defaultFont(0, $fw: 700, $fz: 22px, $ta: left, $lh: 28px, $ff: $montserrat);
+        width: 100%;
+    }
+    &-small {
+        @extend .main-title;
+        @include defaultFont(0, $fw: 600, $fz: 18px, $ta: left, $lh: 24px, $ff: $montserrat);
+        width: 100%;
+    }
+    &-xxsmall {
+        @extend .main-title;
+        @include defaultFont(0, $fw: 700, $fz: 12px, $ta: left, $lh: 24px, $ff: $montserrat);
+        width: 100%;
+    }
+}
+
+
+//-------------------- Line height
+$lhTexts: 14px, 16px, 18px, 20px, 24px, 28px, 30px, 32px;
+@each $lhtex in $lhTexts {
+    //----- Text align
+    .lh-#{$lhtex} {
+        line-height: $lhtex !important;
+    }
+}
+
+//-------------------- Text align general
+$alignsTexts: left,
+center,
+right,
+justify;
+@each $aligns in $alignsTexts {
+    //----- Text align
+    .ta-#{$aligns} {
+        text-align: $aligns !important;
+    }
+}
+
+//-------------------- Font sizes general
+$fontSizes: 8px,
+10px,
+12px,
+14px,
+16px,
+18px,
+20px,
+22px,
+24px,
+26px,
+28px,
+30px,
+32px,
+34px,
+36px,
+38px,
+42px,
+46px,
+52px,
+54px;
+@each $sizes in $fontSizes {
+    //----- Font size
+    .fz-#{$sizes} {
+        font-size: $sizes !important;
+    }
+}
+
+//-------------------- Font weight general
+// el mapa esta creado en _variables.scss
+@each $namefw,
+$valuefw in $mapFW {
+    //----- font weight
+    .fw-#{$namefw} {
+        font-weight: $valuefw !important;
+    }
+}
+
+//-------------------- Text transforms general
+$textTransforms: uppercase,
+lowercase,
+capitalize;
+@each $transforms in $textTransforms {
+    //----- Text transforms
+    .tt-#{$transforms} {
+        text-transform: $transforms !important;
+    }
+}
+
+//-------------------- Font family
+//-------------------- Text Color
+@each $nameFF,
+$valueFF in $mapFF {
+    //----- font family
+    .ff-#{$nameFF} {
+        font-family: $valueFF !important;
+    }
+}
+
+//-------------------- Text Color
+@each $nameCt,
+$valueCt in $mapCTexto {
+    //----- font color
+    .#{$nameCt} {
+        color: $valueCt !important;
+    }
+} 
+
+//-------------------- BG Color
+@each $nameBg,
+$valueBg in $mapBG {
+    //----- background color
+    .#{$nameBg} {
+        background-color: $valueBg !important;
+    }
+} 

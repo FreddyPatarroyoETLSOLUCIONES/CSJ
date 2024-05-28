@@ -1,0 +1,28 @@
+<div class="col-lg-6">
+    <div class="rate-results">
+        <h5>Calificar resultados</h5>
+        <a href="javascript:void(0);" (click)="setRate(1)" alt="Muy malo" [ngClass]="rates.rate1"></a>
+        <a href="javascript:void(0);" (click)="setRate(2)" alt="Malo" [ngClass]="rates.rate2"></a>
+        <a href="javascript:void(0);" (click)="setRate(3)" alt="Aceptable" [ngClass]="rates.rate3"></a>
+        <a href="javascript:void(0);" (click)="setRate(4)" alt="Bueno" [ngClass]="rates.rate4"></a>
+        <a href="javascript:void(0);" (click)="setRate(5)" alt="Muy bueno" [ngClass]="rates.rate5"></a>
+        <div class="d-flex justify-space-between">
+            <p class="fz-8px">Muy malo</p>
+            <p class="fz-8px ta-right">Muy bueno</p>
+        </div>
+    </div>
+</div>
+
+<!-- #region modal -->
+<div id="Modal" class="modal" style="display: block;" [ngStyle]="{'display': modal_confirm ? 'block' : 'none'}">
+    <!-- Modal content -->
+    <div class="modal-content-mini">
+        <div class="modal-body">
+            <div class="ta-center">
+                <img src="../../../../assets/media/icons/ic_ok_modal.svg" alt="¡Encuesta enviada!">
+                <p class="fw-medium mt-25px">Calificación exitosa!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->

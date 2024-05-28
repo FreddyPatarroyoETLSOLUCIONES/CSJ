@@ -1,0 +1,102 @@
+<app-delete-user (confirmarUsuarioDesactivado)="$event ? usuario.is_active = false : usuario.is_active = true; cambioEstado();" [usuario]="usuario" *ngIf="helpersService.modalDeleteUser"></app-delete-user>
+
+<app-active-user (confirmarUsuarioActivado)="$event ? usuario.is_active = true : usuario.is_active = false; cambioEstado();" [usuario]="usuario" *ngIf="helpersService.modalActiveUser"></app-active-user>
+
+<!-- #region modal -->
+<div *ngIf="!helpersService.modalDeleteUser && !helpersService.modalActiveUser" id="Modal" class="modal" style="display: block;">
+    <!-- Modal content -->
+    <div class="modal-content-small">
+        <div class="modal-header">
+            <h2>Editar usuario</h2>
+            <button (click)="changeComponent('administradorUsuarios')" class="close-modal"></button>
+        </div>
+        <div class="modal-body scrolled">
+            <form action="" class="formApp">
+                <div class="form-group">
+                    <label for="nombApellido" class="form-label">Nombre y apellido</label>
+                    <input
+                        [(ngModel)]="usuario.full_name"
+                        name="nombApellido"
+                        type="text"
+                        id="nombApellido"
+                        class="form-control"
+                        aria-label="nombre y apellido"
+                        aria-labelledby="nombApellidoLabel"
+                        placeholder="nombres y apellidos"
+                        disabled
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo y/o usuario</label>
+                    <input [(ngModel)]="usuario.username" name="email" type="email" id="email" class="form-control" aria-label="correo electronico" aria-labelledby="emailLabel" placeholder="correo@correo.com" disabled />
+                </div>
+                <p class="mb-10px fw-medium ct-gray">Rol</p>
+                <div class="form-check mb-10px">
+                    <input
+                        (click)="agregarNuevoRol('usuario_interno')"
+                        [(ngModel)]="validateInterUser"
+                        name="userInte"
+                        type="checkbox"
+                        id="userInte"
+                        class="form-check-input"
+                        aria-labelledby="userInteLabel"
+                        [disabled]="!usuario.is_active"
+                    />
+                    <label for="userInte " id="userInteLabel" class="form-label">Usuario interno</label>
+                </div>
+                <div class="form-check mb-10px">
+                    <input (click)="agregarNuevoRol('administrador')" [(ngModel)]="validateAdmin" type="checkbox" name="admin" id="admin" class="form-check-input" aria-labelledby="adminLabel" [disabled]="!usuario.is_active" />
+                    <label for="admin " id="adminLabel" class="form-label">Administrador</label>
+                </div>
+                <div class="form-check mb-10px">
+                    <input
+                        (click)="agregarNuevoRol('administrador_funcional')"
+                        [(ngModel)]="validateAdminFuncional"
+                        type="checkbox"
+                        name="adminFun"
+                        id="adminFun"
+                        class="form-check-input"
+                        aria-labelledby="adminFunLabel"
+                        [disabled]="!usuario.is_active"
+                    />
+                    <label for="adminFun" id="adminFunLabel" class="form-label">Administrador funcional</label>
+                </div>
+                <div class="form-group mt-30px">
+                    <p class="mb-10px fw-medium ct-gray">Estado</p>
+                    <div class="d-flex align-center">
+                        <label class="switch">
+                            <input (change)="abrirModal()" [(ngModel)]="usuario.is_active" name="is_active" id="is_active" type="checkbox" aria-labelledby="is_activeLabel" />
+                            <span class="slider round"></span>
+                        </label>
+                        <p class="ml-20px" id="is_activeLabel">{{usuario.is_active ? 'Activo' : 'Inactivo'}}</p>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="validarNuevosRoles || validarCambiosEstado">
+                    <label for="justiCambioEst" class="form-label">Justificación del cambio *</label>
+                    <input
+                        [(ngModel)]="usuario.observations"
+                        name="justiCambioEst"
+                        type="text"
+                        id="justiCambioEst"
+                        class="form-control"
+                        aria-label="Justificación cambio de estado"
+                        aria-labelledby="justiCambioEstLabel"
+                        placeholder="Escriba aquí"/>
+                </div>
+            </form>
+
+            <div *ngIf="validateEditUser">
+                <p class="ct-redPrimary">{{mensaje}}</p>
+            </div>
+
+            <div *ngIf="userEdited">
+                <p class="ct-greenPrimary">{{mensaje}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="changeComponent('administradorUsuarios')" class="btn btn-text close" aria-label="Cerrar ventana">Cancelar</button>
+            <button (click)="editarUsuario()" class="btn blue" aria-label="Cerrar ventana">Guardar</button>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->

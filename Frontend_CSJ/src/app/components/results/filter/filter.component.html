@@ -1,0 +1,147 @@
+<div class="body">
+    <div class="accordion-wrap" *ngIf="filter?.ponente?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('Ponente')">
+            <span>Ponente</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{'display': checkPonente ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.ponente?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedPonente(items?.key)">{{items?.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.fecha?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('Fecha')">
+            <span>Fecha</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkFecha ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.fecha?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedFecha(items?.key_as_string)">{{(items?.key_as_string).substring(0,4)}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.providencia?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'Providencia')">
+            <span>Tipos de providencia</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkProvidencia ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.providencia?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedTiposProvidencia(items?.key)">{{items?.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.fuente_formal?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'FuenteFormal') ">
+            <span>Fuente formal</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkFuenteFormal ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.fuente_formal?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedFuentesFormales(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.clase_actuacion?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'ClasesActuacion')">
+            <span>Clase de actuación</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkClaseActuacion ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.clase_actuacion?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedClaseActuaciones(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.delitos?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('Delitos')">
+            <span>Delitos</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkDelitos ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.delitos?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedDelitos(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.procedencia?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'Procedencia')">
+            <span>Procedencia</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkProcedencia ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.procedencia?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedProcedencias(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.categoria_genero?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'CategoriaGenero')">
+            <span>Categorías genero</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkCategoriaGenero ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.categoria_genero?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedCategoriasGenero(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.sala?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter( 'salas')">
+            <span>Salas</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkSala ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.sala?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedSalas(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.decision?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('decisiones')">
+            <span>Decisiones</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkDecision ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.decision?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedDecisiones(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.magistrado_salvamento?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('magistradosSalvamento')">
+            <span>Magistrados salvamento</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkMagistradoSalvamento ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.magistrado_salvamento?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedMagistradosSalvamento(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="accordion-wrap" *ngIf="filter?.tipo_sala?.buckets?.length > 0">
+        <div class="accordion" (click)="changeFilter('tiposSala')">
+            <span>Tipos de salas</span>
+        </div>
+        <div class="accordion-content" [ngStyle]="{ 'display': checkTipoSala ? 'block' : 'none'}">
+            <form action="" [formGroup]="filterForm">
+                <div class="form-check mb-10px" *ngFor="let items of filter?.tipo_sala?.buckets">
+                    <a type="button" id="filter1" (click)="changeSelectedTiposSalas(items?.key)">{{items.key}} <span>({{items?.doc_count}})</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<button class="btn btn-text-blue btn-block" aria-label="Limpiar campos de filtros">Limpiar Filtros</button>

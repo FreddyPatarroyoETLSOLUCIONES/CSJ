@@ -1,0 +1,60 @@
+<!-- MENU SIN USUARIO -->
+<nav *ngIf="!userDataLogin.access" class="menu-login notLoged">
+    <!--botones de volver e iniciar sesión-->
+    <a href="https://csj-apigatewayfront.azurewebsites.net/?p=CNSJ" class="btn-back" alt="Regresar a la pantalla anterior">
+        Volver
+    </a>
+    <!--<button (click)="openLogin()" type="button" class="btn-back" aria-label="Iniciar sesión">
+        <span style="color:white">Volver</span>
+    </button>-->
+    <button (click)="openLogin()" type="button" class="btn-login" aria-label="Iniciar sesión">
+        Iniciar sesión
+    </button>
+</nav>
+<!-- MENU CON USUARIO -->
+<div *ngIf="userDataLogin.access">
+    <nav class="menu-login">
+        <!--botones de volver e iniciar sesión-->
+        <button (click)="showVerticalMenu()" type="button" class="btn-menu close" [ngClass]="{'close': verticalMenu}" aria-label="Abrir menú "></button>
+        <button type="button " class="btn-login loged " aria-label="Iniciar sesión ">
+            {{userDataLogin.username}}
+        </button>
+    </nav>
+    <aside *ngIf="verticalMenu " class="vertical-menu backdrop ">
+        <ul class="list-menu d-block " role="list ">
+            <li class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'principal') " class="item-link home ">Inicio</a>
+            </li>
+            <li class="item-title ">Módulos</li>
+            <li *ngIf="permisosAdministrador" class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'parametrizacion') " class="item-link parameter ">Parametrización de campos y logos</a>
+            </li>
+            <li *ngIf="permisosAdministrador" class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'administradorUsuarios') " class="item-link admin ">Administración de usuarios</a>
+            </li>
+            <li *ngIf="permisosUsuarioInterno" class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'historialSearch') " class="item-link history ">Historial de búsqueda</a>
+            </li>
+            <li *ngIf="permisosAdministrador" class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'logAuditoria') " class="item-link consult ">Consultar log de auditoría</a>
+            </li>
+            <li *ngIf="permisosAdministradorFuncional" class="item-list " role="listitem ">
+                <a (click)="changeComponent( 'dashboard') " class="item-link management ">Indicadores de gestión</a>
+            </li>
+            <li class="item-title ">General</li>
+            <li class="item-list " role="listitem ">
+                <a (click)="closeSesion() " class="item-link logout ">Cerrar sesión</a>
+            </li>
+            <li class="item-divider "></li>
+            <li class="item-rol ">
+                <p>Roles del usuario: </p>
+                <ul role="list ">
+                    <li *ngIf="permisosAdministrador" role="listitem ">Administrador</li>
+                    <li *ngIf="permisosAdministradorFuncional" role="listitem ">Administrador funcional</li>
+                    <li *ngIf="permisosUsuarioInterno" role=" listitem ">Usuario interno</li>
+                </ul>
+
+            </li>
+        </ul>
+    </aside>
+</div>

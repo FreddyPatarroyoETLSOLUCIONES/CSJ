@@ -1,0 +1,17 @@
+//Estilos cabecera de título
+.title-header{
+    padding: 45px 0 55px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $blues2;
+    h1{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            max-height: 103px;
+        }
+        p{
+            text-align: center;
+        }
+    }
+}

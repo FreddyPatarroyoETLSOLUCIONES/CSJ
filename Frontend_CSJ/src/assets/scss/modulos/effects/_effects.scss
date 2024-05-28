@@ -1,0 +1,45 @@
+//-------------------- borders
+
+.border-top{
+    border-top: 1px solid #C9C9C9;
+}
+.border-right{
+    border-right: 1px solid #C9C9C9;
+}
+.border-bottom{
+    border-bottom: 1px solid #C9C9C9;
+}
+.border-left{
+    border-left: 1px solid #C9C9C9;
+}
+
+.border-radius-none{
+    border-radius: 0 !important;
+    &-left{
+        @extend .border-radius-none;
+        border-radius: 0 10px 10px 0 !important;
+    }
+    &-right{
+        @extend .border-radius-none;
+        border-radius: 10px 0 0 10px !important;
+    }
+}
+.border-radius-all{
+    border-radius: 10px !important;
+}
+
+//------------- Imágenes e iconos
+.img-fluid{
+    min-width: 100%;
+}
+.icon-img-15px{
+    max-width: 15px;
+    max-height: 15px;
+}
+
+//----------- Ancho total
+.w-100{
+    min-width: 100%;
+}
+
+//--------- Botón de encuesta

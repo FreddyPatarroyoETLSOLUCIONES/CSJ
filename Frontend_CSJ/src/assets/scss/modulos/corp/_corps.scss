@@ -1,0 +1,115 @@
+//Estilos para adaptar a las corporaciones
+
+/*Consejo Judicatura*/
+.conJudica{
+    .action-search{
+        background-color: $greenPrimary;
+        border-color: $greenPrimary;
+        color: $white;
+        &:hover{
+            background-color: $lighGreenPrimary;
+        }
+    }
+    footer{
+        background-color: $greenPrimary;
+    }
+}
+
+/*Consejo Estado*/
+.conEstado{
+    .action-search{
+        background-color: $lighBluePrimary;
+        border-color: $lighBluePrimary;
+        color: $white;
+        &:hover{
+            background-color: $blues4;
+        }
+    }
+    footer{
+        background-color: $lighBluePrimary;
+    }
+}
+
+/*Disciplina Jurídica*/
+.disJudi{
+    .action-search{
+        background-color: $lighGreenPrimary;
+        border-color: $lighGreenPrimary;
+        color: $white;
+        &:hover{
+            background-color: $greenPrimary;
+        }
+    }
+    footer{
+        background-color: $lighGreenPrimary;
+    }
+}
+
+/*Corte constitucional*/
+.corteConst{
+    .action-search{
+        background-color: $redPrimary;
+        border-color: $redPrimary;
+        color: $white;
+        &:hover{
+            background-color: #830f25;
+        }
+    }
+    footer{
+        background-color: $redPrimary;
+    }
+}
+
+//Opción 2 para asignar colores
+
+/*Consejo Judicatura*/
+.action-search.conJudica{
+    background-color: $greenPrimary;
+    border-color: $greenPrimary;
+    color: $white;
+    &:hover{
+        background-color: $lighGreenPrimary;
+    }
+}
+footer.conJudica{
+    background-color: $greenPrimary;
+}
+
+/*Consejo Estado*/
+.action-search.conEstado{
+    background-color: $lighBluePrimary;
+    border-color: $lighBluePrimary;
+    color: $white;
+    &:hover{
+        background-color: $blues4;
+    }
+}
+footer.conEstado{
+    background-color: $lighBluePrimary;
+}
+
+/*Disciplina Jurídica*/
+.action-search.disJudi{
+    background-color: $lighGreenPrimary;
+    border-color: $lighGreenPrimary;
+    color: $white;
+    &:hover{
+        background-color: $greenPrimary;
+    }
+}
+footer.disJudi{
+    background-color: $lighGreenPrimary;
+}
+
+/*Corte constitucional*/
+.action-search.corteConst{
+    background-color: $redPrimary;
+    border-color: $redPrimary;
+    color: $white;
+    &:hover{
+        background-color: #830f25;
+    }
+}
+footer.corteConst{
+    background-color: $redPrimary;
+}

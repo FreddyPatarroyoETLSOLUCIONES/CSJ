@@ -1,0 +1,292 @@
+
+<form action="" class="formApp" [formGroup]="generalForm">
+    <div class="tab-content">
+        <div class="filters"></div>
+        <div class="advFilter">
+            <p class="fw-medium fz-18px ff-montserrat mb-30px">Seleccione una de las siguientes opciones para filtrar su búsqueda. <br>Los filtros pueden ser excluyentes.</p>
+            <form action="" class="formApp" [formGroup]="generalForm">
+                <div class="form-group">
+                    <label for="nombCampo" class="form-label">Nombre del campo</label>
+                    <input type="text" id="nombCampo" class="form-control" (keyup)="searchFiltroGeneralBusqueda()" formControlName="nameSearch"  aria-label="Escriba un criterio" placeholder="Escriba un criterio">
+                </div>
+                <div class="d-flex aling-center">
+
+
+                    <div class="form-check mb-15px mr-25px">
+                        <input type="checkbox" id="chckJurisprudencia" class="form-check-input" name="chckJurisprudencia" formControlName="chckJurisprudencia" (click)="toggleShowChckJurisprudenciaValue()"  >
+                        <label for="Actos" class="form-label fw-regular">Jurisprudencia</label>
+                    </div>
+
+                    
+                    <div class="form-check mb-15px mr-25px" *ngIf="chckJurisprudenciaValue == true" >
+                        <input type="radio" id="chckAltasCortes" class="form-check-input" name="chckSeccion" formControlName="chckSeccion" value="chckAltasCortes">
+                        <label for="alerCortes" class="form-label fw-regular">Altas cortes</label>
+                    </div>
+                    <div class="form-check mb-15px mr-25px">
+                        <input type="radio" id="chckTribunales" class="form-check-input" name="chckSeccion" formControlName="chckSeccion" value="chckTribunales">
+                        <label for="chckTribunales" class="form-label fw-regular">Tribunales</label>
+                    </div>
+                    <div class="form-check mb-15px mr-25px">
+                        <input type="radio" id="chckBiblioteca" class="form-check-input" name="chckSeccion" formControlName="chckSeccion" value="chckBiblioteca">
+                        <label for="Biblioteca" class="form-label fw-regular">Biblioteca</label>
+                    </div>
+
+                    <div class="form-check mb-15px mr-25px">
+                        <input type="radio" id="chckActosAdministrativos" class="form-check-input" name="chckSeccion" formControlName="chckSeccion" value="chckActosAdministrativos">
+                        <label for="Actos" class="form-label fw-regular">Actos administrativos</label>
+                    </div>
+
+
+
+                </div>
+                <section *ngIf="generalForm.get('chckSeccion')?.value == 'chckAltasCortes' && chckJurisprudenciaValue == true">
+                <div class="row my-30px">
+                    <div class="col-lg-4" >
+                        <div class="form-group-dropdown" >
+                            <label for="ddlAltasCortes" form-check-label class="form-label">Altas cortes</label>
+                            <ng-multiselect-dropdown 
+                                    [placeholder]="'Seleccionar Alta Corte'" 
+                                    [settings]="dropdownSettings" 
+                                    [data]="altasCortes" 
+                                    (onSelect)=" onItemSelect($event)" 
+                                    (onSelectAll)="onSelectAll($event)" 
+                                    formControlName="selectedItems" 
+                                    (onDeSelect)="onItemDeSelect($event)"> 
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    <!--Anexo 12 Tribunales-->
+    <section *ngIf="generalForm.get('chckSeccion')?.value == 'chckTribunales'">
+                <div  class="row my-30px" >
+                    <div class="col-lg-4">
+                        <div class="form-group-dropdown">
+                            <label for="ddTribunales" form-check-label class="form-label">Tribunales</label>
+                                <ng-multiselect-dropdown 
+                                    [placeholder]="'Seleccionar Tribunal'" 
+                                    [settings]="dropdownSettingsTribunales" 
+                                    [data]="tribunales" 
+                                    (onSelect)="onItemSelectTribunales($event)" 
+                                    (onSelectAll)="onSelectAllTribunales($event)" 
+                                    formControlName="selectedItemsTribunales"
+                                    (onDeSelect)="onItemDeSelectTribunales($event)"> 
+                                </ng-multiselect-dropdown>                        
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section *ngIf="generalForm.get('chckSeccion')?.value == 'chckBiblioteca'">
+                <div class="row my-30px">
+
+                    <div class="col-lg-3 my-15px">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Biblioteca</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar'" [settings]="dropdownSettingsBiblioteca" [data]="biblioteca" (onSelect)="onItemSelectBiblioteca($event)" (onSelectAll)="onSelectAllBiblioteca($event)" formControlName="selectedItemsBiblioteca" (onDeSelect)="onItemDeSelectBiblioteca($event)"
+                                [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagHolocausto == true && flagVideoteca == false && flagAdmin == false">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfoHolocausto" [data]="tipoInformacionHolocausto" (onSelect)="onItemSelectHolocausto($event)" (onSelectAll)="onSelectAllHolocausto($event)" formControlName="selectedItemsInfoHolocausto"
+                                (onDeSelect)="onItemDeSelectHolocausto($event)" [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagVideoteca == true && flagHolocausto == false && flagAdmin == false">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfoVideoteca" [data]="tipoInformacionVideoteca" (onSelect)="onItemSelectVideoteca($event)" (onSelectAll)="onSelectAllVideoteca($event)" formControlName="selectedItemsInfoVideoteca"
+                                (onDeSelect)="onItemDeSelectVideoteca($event)" [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagAdmin == true && flagVideoteca == false && flagHolocausto == false">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsActos" [data]="tipoInformacionActosAdmin" (onSelect)="onItemSelectActos($event)" (onSelectAll)="onSelectAllActos($event)" formControlName="selectedItemsActos"
+                                (onDeSelect)="onItemDeSelectActos($event)" [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagVideoteca == true && flagHolocausto == true && flagAdmin == false" id="ddlTipoInformacion">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfo" [data]="tipoInformacionHV" (onSelect)="onItemSelectInfo($event)" (onSelectAll)="onSelectAllInfo($event)" formControlName="selectedItemsInfo" (onDeSelect)="onItemDeSelectInfo($event)"
+                                [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagAdmin == true && flagHolocausto == true && flagVideoteca == false" id="ddlTipoInformacion">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfo" [data]="tipoInformacionHA" (onSelect)="onItemSelectInfo($event)" (onSelectAll)="onSelectAllInfo($event)" formControlName="selectedItemsInfo" (onDeSelect)="onItemDeSelectInfo($event)"
+                                [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagVideoteca == true && flagAdmin == true && flagHolocausto == false" id="ddlTipoInformacion">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfo" [data]="tipoInformacionVA" (onSelect)="onItemSelectInfo($event)" (onSelectAll)="onSelectAllInfo($event)" formControlName="selectedItemsInfo" (onDeSelect)="onItemDeSelectInfo($event)"
+                                [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="flagVideoteca == true && flagHolocausto == true && flagAdmin == true" id="ddlTipoInformacion">
+                        <div class="form-group-dropdown"> <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                            <ng-multiselect-dropdown [placeholder]="'Seleccionar Tipo de Información'" [settings]="dropdownSettingsInfo" [data]="tipoInformacion" (onSelect)="onItemSelectInfo($event)" (onSelectAll)="onSelectAllInfo($event)" formControlName="selectedItemsInfo" (onDeSelect)="onItemDeSelectInfo($event)"
+                                [settings]="dropdownMultiSettings"> </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section *ngIf="generalForm.get('chckSeccion')?.value == 'chckJurisprudenciaDeGenero'">
+        </section>
+
+        <section *ngIf="generalForm.get('chckSeccion')?.value == 'chckActosAdministrativos'">
+        <div class="row my-30px">
+            <div class="col-lg-4">
+                <div class="form-group-dropdown">
+                    <label for="ddlFuenteInformacion" form-check-label class="form-label">Tipo de Información</label>
+                        <ng-multiselect-dropdown 
+                            [placeholder]="'Seleccionar Tipo de Información'" 
+                            [settings]="dropdownSettingsActos" 
+                            [data]="tipoInformacionActosAdmin" 
+                            (onSelect)="onItemSelectActos($event)" 
+                            (onSelectAll)="onSelectAllActos($event)" 
+                            formControlName="selectedItemsActos"
+                            (onDeSelect)="onItemDeSelectActos($event)" 
+                            [settings]="dropdownMultiSettings"> 
+                        </ng-multiselect-dropdown>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="table-responsive mt-30px">  
+        <table class="mainTable" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del campo</th>
+                    <th scope="col" class="ta-right">Fecha actualización</th>
+                    <th scope="col">Texto de ayuda (Tooltip)</th>
+                    <th scope="col">Actualizado por</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let element of paramToolTips" > 
+                    <tr>
+                        <td>{{element.campo}}</td>
+                        <td class="ta-right">{{element.updated_at | date: 'dd/MM/yyyy'}}</td>
+                        <td style="max-width:400px; word-wrap: break-word;">{{element.tooltip}}</td>
+                        <td>{{element.updated_by}}</td>
+                        <td>
+                            <div class="active-drop">
+                                <button class="btn-active" (click)="toggleShowStatusEvent(element.internal_id)">{{stateArray[element.status ? 1 : 0]}}</button>
+                                <div class="content-active" [ngClass]="listStateArray[element.internal_id] == true ? '': 'd-none' ">
+                                    <ul role="list">
+                                        <ng-container *ngFor="let elementStatus of stateArray; let i = index">
+                                            <li role="listitem">
+                                                <a href="javascript:void(0);" (click)="updateStatusByIdInternalId(element.internal_id , element.status)" [ngClass]="elementStatus == stateArray[element.status ? 1 : 0] ? 'active': '' ">{{elementStatus}}</a>
+                                            </li>
+                                        </ng-container>    
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <!--<td>{{stateArray[element.status ? 1 : 0]}}</td>-->
+                        <td  class="box-button">
+                            <!--<button class="btn-drop" (click)='toggleShowTable()'></button>-->
+                            <button class="edit" (click)="modalEditar(element.tooltip, element.internal_id)"></button>
+                        </td>
+                    </tr>
+                </ng-container>                 
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row align-flex-end mb-30px">
+        <div class="col-md-3">
+        
+                <div class="form-group mini mb-0px">
+                    <select name="registrosPorPaginaHistoricoSelect" id="registrosPorPaginaHistoricoSelect" class="form-control" (change)="changePaginadoFiltroGeneralBusqueda()" formControlName="registrosPorPaginaHistoricoSelect"  aria-label="Seleccione una cantidad para mostrar">
+                        <option value="10" selected="selected">Mostrando 10</option>
+                        <option value="50">Mostrando 50</option>
+                        <option value="100">Mostrando 100</option>
+                    </select>
+                </div>
+    
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="pagination-container mb-0px">
+                <nav>
+                    <ul class="pagination">
+                        <li [ngClass]="resultConsult?.previous_page == null  ? 'page-item previous disabled' : 'page-item previous'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(1)" >
+                                <img src="/assets/media/icons/ic-arrow-previous-last.svg" alt="">
+                            </a>
+                        </li>
+                        <li [ngClass]="resultConsult?.previous_page == null   ? 'page-item previous disabled' : 'page-item previous'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaActual - 1)" >
+                                <img src="/assets/media/icons/ic-arrow-previous.svg" alt="">
+                            </a>
+                        </li>
+
+                        <ng-container *ngFor="let element of historicoPaginaArray">    
+                            <li class="page-item">
+
+                                <a class="page-link"  [ngStyle] = "{'color': currentPage == element ? '#3366CC' : 'black'}"  href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(element)" >{{element}}</a>
+
+                            </li> 
+                        </ng-container>    
+            
+
+                        <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaActual + 1)" >
+                                <img src="/assets/media/icons/ic-arrow-next.svg" alt="">
+                            </a>
+                        </li>
+                        <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                            <a class="page-link" href="javascript:void(0);" (click)="changePaginadoFiltroGeneralBusqueda(historicoPaginaTotal)" >
+                                <img src="/assets/media/icons/ic-arrow-next-last.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>        
+
+    </div>
+
+    <div id="ModalEditar" class="modal modal-lg" [ngStyle]="{'display': flagModalEditar ? 'block' : 'none'}">
+        <!-- Modal content -->
+        <div class="modal-content  modal-lg">
+            <div class="modal-header"> <button class="close-modal" (click)="modalEditar()"></button>
+                <h2>Tema</h2>
+            </div>
+            <div class="modal-body scrolled">
+                <div style="color:red" [ngStyle]="{'display': errorInput ? 'block' : 'none'}">El texto del texto de ayuda (Tooltip), no puede exceder los 200 carácteres.</div>
+                <p class="fw-medium ct-bluePrimary mb-20px">Edite el texto de ayuda (Tooltip) y guarde los cambios.</p>
+
+                <div class="form-group">
+                    <input type="text"  (keyup)="validateToolTipLength()" class="form-control" formControlName="toolTipInput"  id="toolTipInput" name="toolTipInput"  aria-label="Escriba una descripción" placeholder="Escriba una descripción" value="Digite el radicado único nacional (23 dígitos), o el radicado interno.">
+                    <div class="d-flex justify-flex-end">
+                        <span class="fz-12px mt-5px">{{toolTipLength}}/200</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer"> 
+                <button class="btn btn-text close" aria-label="Cerrar ventana" (click)="modalEditar()">Cancelar</button>
+                <button [disabled]="errorInput == true" class="btn blue close" aria-label="Cerrar ventana" (click)="updateDataByIdInternalId()">Guardar</button> 
+            </div>
+        </div>
+    </div>
+            </form>   
+            <!--<section class="submit-search">
+                <div class="row">
+                    <div class="col-lg-3">                        
+                        <button type="button" class="btn bg-bluePrimary ct-white btn-block" aria-label="Filtrar" >Filtrar</button>
+                    </div>
+                </div>
+            </section> -->
+                    
+        </div>
+        <div class="updateLogo"></div>
+    </div>  
+</form>

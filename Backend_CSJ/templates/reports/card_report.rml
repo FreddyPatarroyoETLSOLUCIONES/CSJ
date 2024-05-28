@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="reporte.pdf">
+
+<template title="reporte" author="" allowSplitting="20">
+    <pageTemplate id="page_{{forloop.counter}}">
+      <frame id="page" x1="34.0" y1="28.0" width="530" height="786"/>
+    </pageTemplate>
+</template>
+
+  <stylesheet>
+    <blockTableStyle id="blocktablestyle1">
+      <blockValign value="CENTER" start="0,0" stop="-1,0"/>
+    </blockTableStyle>
+  </stylesheet>
+
+ <story>
+    <image file="{{logo}}"/>
+
+    <para><font color="#004884"><b>Criterios de búsqueda</b></font>{{item.id}}</para>
+    <para><b> </b><b> </b></para>
+
+    <para><font color="#004884"><b>Fecha de consulta: </b></font>{{date}}</para>
+    <para><font color="#004884"><b>Resultados encontrados: </b></font>{{total_records}}</para>
+    <para><font color="#004884"><b>Resultados seleccionados: </b></font>{{items|length}}</para>
+    <para><b> </b><b> </b></para>
+    <para><b> </b><b> </b></para>
+
+
+    {% for item in items_report %}
+        {% for key, value in item.items %}
+        <para><font color="white"> </font></para>
+        <para><font color="#004884"><b>{{value.value}}: </b></font>{{value.id}}</para>
+        <para><font color="white">_</font></para>
+        {% endfor %}
+    <nextPage/>
+    {% endfor %}
+ </story>
+
+
+</document>

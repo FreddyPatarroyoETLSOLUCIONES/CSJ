@@ -1,0 +1,23 @@
+.top-bar-user{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #004884;
+    color: #FFF;
+    font-size: 14px;
+    z-index: 3;
+    .dropdown-layer{
+        position: relative;
+        width: max-content;
+        margin-left: auto;
+        .dropdown{
+            padding: 5px 35px 5px 15px;
+        }
+        .dropdown-content{
+            min-width: max-content;
+            right: 10px;
+            top: calc(100% + 10px);
+            color: #004884;
+        }
+    }    
+}

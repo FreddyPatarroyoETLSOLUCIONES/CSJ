@@ -1,0 +1,19 @@
+ <!-- #region modal -->
+ <div id="Modal" class="modal" style="display: block;">
+    <!-- Modal content -->
+    <div class="modal-content-small">
+        <div class="modal-header">
+            <button (click)="closeModal()" role="button" class="close-modal"></button>
+            <h2>Activar usuario</h2>
+        </div>
+        <div class="modal-body scrolled">
+            <p>¿Está seguro de activar al usuario <strong>{{usuario.full_name}}</strong> ? con rol: <strong *ngFor="let rol of usuario.roles">{{rol}} <br> </strong> </p>
+        </div>
+        <div class="modal-footer">
+            <button (click)="closeModal()" class="btn btn-text" role="button" aria-label="Cerrar ventana">Cancelar</button>
+            <button (click)="confirmarActivacion()" class="btn blue" role="button" aria-label="Guardar cambios">Activar</button>
+        </div>
+    </div>
+
+</div>
+<!-- #endregion -->

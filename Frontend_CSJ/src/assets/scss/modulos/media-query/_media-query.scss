@@ -1,0 +1,171 @@
+//Estilos para dispositivos móviles
+
+@media (max-width: 768px){
+    .title-header{
+        padding-bottom: 15px;
+        h1{
+            flex-wrap: wrap;
+            align-items: flex-start;
+            img{
+                max-width: 65px;
+                margin-bottom: 30px;
+                &:first-of-type{
+                    order: 1;
+                }
+                &:last-of-type{
+                    order: 2;
+                }
+            }
+            p{
+                font-size: 22px;
+                text-align: left;
+                order: 3;
+            }
+        }
+    }
+    .add-criter{
+        text-align: left;
+    }
+    .search-results{
+        .header-results{
+            & > div{
+                flex-direction: column;
+                p{
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .wrapper{
+            flex-direction: column;
+            .filters{
+                width: 100%;
+                .accordions{
+                    padding: 0;
+                }
+            }
+            .results{
+                width: 100%;
+                padding: 0 !important;
+                margin-top: 30px;
+                article{
+                    .abstract{
+                        margin-right: 15px;
+                        min-height: 118px;
+                        -webkit-line-clamp: 6;
+                    }
+                    .d-flex.ml-35px{
+                        flex-direction: column;
+                        p{
+                            margin-bottom: 15px;
+                        }
+                    }
+                    .buttons-section{
+                        flex-direction: column;
+                        button{
+                            width: 100%;
+                            justify-content: flex-start;
+                            &:last-of-type{
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .rate-results{
+        margin: 0 auto 30px auto;
+
+    }
+    .pagination-container{
+        nav{
+            margin: 0 auto;
+        }
+    }
+    footer{
+        padding: 15px 15px 0 15px;
+        .container-fluid{
+            min-width: 100vw;
+            margin-left: -15px;
+        }
+    }
+    .modal{
+        padding-top: 15px;
+        .modal-content{
+            width: 90%;
+            .modal-body{
+                max-height: 430px !important;
+                &.maxheight{
+                    max-height: max-content !important;
+                }
+            }
+            .modal-footer{
+                flex-direction: column;
+                .btn{                                        
+                    width: 100%;
+                    margin-left: 0;
+                    margin-bottom: 10px;
+                    &:first-of-type{
+                        order: 2;
+                    }
+                }
+            }
+        }
+        .quiz{
+            .title-radio{
+                display: none;
+            }
+            .form-check{
+                margin-left: 0 !important;
+                label{
+                    span{
+                        display: block !important;
+                    }
+                }
+            }
+        }
+    }
+    .submit-search{
+        .row{
+            .col-lg-3{
+                &:first-of-type{
+                    order: 2;
+                }
+            }
+        }
+    }
+    .formApp{
+        .form-group{
+            .form-label{
+                font-size: 14px;
+            }
+        }
+    }
+    .modal-2col{
+        .col-lg-4{
+            padding-left: 0;
+            padding-right: 0;
+            order: 1;
+        }
+        .col-lg-8{
+            order: 2;
+            padding-top: 15px;
+        }
+        .search-terms{
+            .accordion{
+                padding: 10px 0;
+                background: url(../media/icons/ic_arrow_down.svg) no-repeat;
+                background-position: center right;
+                background-size: 15px;
+                p{
+                    margin-bottom: 0 !important;
+                }
+                &.active{
+                    background: url(../media/icons/ic_arrow_down.svg) no-repeat;
+                    background-position: center right;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,25 @@
+//Estilos para los tags
+.tags-content{
+    display: flex;
+    overflow: auto;
+    padding-bottom: 15px;
+    .tag{
+        border-radius: 23px;
+        height: 23px;
+        background-color: #37424d;
+        color: $white;
+        min-width: max-content;
+        margin-right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+        .close{
+            cursor: pointer;
+            margin-left: 5px;
+            width: 15px;
+            height: 15px;
+            background: url(../media/icons/ic_delete_white.svg) no-repeat center;
+        }
+    }
+}

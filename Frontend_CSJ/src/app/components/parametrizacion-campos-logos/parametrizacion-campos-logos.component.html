@@ -1,0 +1,31 @@
+<main class="container pb-50px">
+<h2 class="ct-bluePrimary fz-22px fw-bold mb-45px">Parametrización de campos y logos</h2> 
+<div class="tab-navs">
+    <ul class="tabs">
+        <li class="item">
+            <button type="button" class="tab-item" (click)="changeComponent('paramatrizacion-filtro-general')" [class.active]="showComponents == 'paramatrizacion-filtro-general'" >Filtros generales</button>
+        </li>
+        <li class="item"> 
+            <button type="button" class="tab-item" (click)="changeComponent('app-filtros-avanzados')" [class.active]="showComponents == 'app-filtros-avanzados'">Filtros avanzados</button>
+        </li>
+        <li class="item">
+            <button type="button" class="tab-item" (click)="changeComponent('app-actualizar-logo')" [class.active]="showComponents == 'app-actualizar-logo'">Actualizar logo</button>
+        </li>
+    </ul>
+</div>   
+
+<div *ngIf="showComponents=='paramatrizacion-filtro-general'">
+    <app-filtros-generales></app-filtros-generales>
+</div>
+
+<div *ngIf="showComponents=='app-filtros-avanzados'">
+    <app-filtros-avanzados></app-filtros-avanzados>
+</div>
+
+<div *ngIf="showComponents=='app-actualizar-logo'">
+    <app-actualizar-logo></app-actualizar-logo>
+</div>
+
+</main>
+
+

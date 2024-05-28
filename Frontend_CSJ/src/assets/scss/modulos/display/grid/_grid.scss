@@ -1,0 +1,51 @@
+//Grid System
+//--------------------//
+.container {
+    max-width: 1400px;
+    @include make-container();
+}
+
+.container-fluid {
+    max-width: 100%;
+    @include make-container();
+}
+
+.row {
+    @include make-row();
+}
+
+
+/** Grid de columnas **/
+
+[class*="col-"],
+.col {
+    width: 100%;
+    max-width: 100%;
+    padding-left: $grid-gutter / 2;
+    padding-right: $grid-gutter / 2;
+}
+
+.col {
+    flex: 1 0 0;
+}
+
+@include make-grid-system(col);
+
+/*Reponsive grid*/
+
+//Responsive grid
+@media (min-width: 576px) {
+    @include make-grid-system(col-sm);
+}
+
+@media (min-width: 768px) {
+    @include make-grid-system(col-md);
+}
+
+@media (min-width: 992px) {
+    @include make-grid-system(col-lg);
+}
+
+@media (min-width: 1220px) {
+    @include make-grid-system(col-xl);
+}

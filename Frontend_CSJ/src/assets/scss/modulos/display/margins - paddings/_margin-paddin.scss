@@ -1,0 +1,99 @@
+//-------------------- Margins 
+$listMargins: 0px,
+5px,
+10px,
+15px,
+20px,
+25px,
+30px,
+35px,
+45px,
+50px,
+55px,
+60px,
+65px,
+70px,
+80px,
+90px,
+auto;
+@each $margins in $listMargins {
+    //----- Margin top
+    .mt-#{$margins} {
+        margin-top: $margins !important;
+    }
+    //----- Margin bottom
+    .mb-#{$margins} {
+        margin-bottom: $margins !important;
+    }
+    //----- Margin left
+    .ml-#{$margins} {
+        margin-left: $margins !important;
+    }
+    //----- Margin right
+    .mr-#{$margins} {
+        margin-right: $margins !important;
+    }
+    //----- Margin eje X
+    .mx-#{$margins} {
+        margin-left: $margins !important;
+        margin-right: $margins !important;
+    }
+    //----- Margin eje Y
+    .my-#{$margins} {
+        margin-top: $margins !important;
+        margin-bottom: $margins !important;
+    }
+    //----- Margin total
+    .m-#{$margins} {
+        margin: $margins !important;
+    }
+}
+
+//-------------------- Paddings
+$listPaddings: 0px,
+5px,
+10px,
+15px,
+20px,
+25px,
+30px,
+35px,
+45px,
+50px,
+55px,
+60px,
+65px,
+70px,
+150px;
+@each $paddings in $listPaddings {
+    //----- Padding top
+    .pt-#{$paddings} {
+        padding-top: $paddings !important;
+    }
+    //----- Padding bottom
+    .pb-#{$paddings} {
+        padding-bottom: $paddings !important;
+    }
+    //----- Padding left
+    .pl-#{$paddings} {
+        padding-left: $paddings !important;
+    }
+    //----- Padding right
+    .pr-#{$paddings} {
+        padding-right: $paddings !important;
+    }
+    //----- Padding eje X
+    .px-#{$paddings} {
+        padding-left: $paddings !important;
+        padding-right: $paddings !important;
+    }
+    //----- Padding eje Y
+    .py-#{$paddings} {
+        padding-top: $paddings !important;
+        padding-bottom: $paddings !important;
+    }
+    //----- Margin total
+    .p-#{$paddings} {
+        padding: $paddings !important;
+    }
+}

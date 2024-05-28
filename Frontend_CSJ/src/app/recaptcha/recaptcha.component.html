@@ -1,0 +1,29 @@
+<form *ngIf="recaptchaValidation==false" #form="ngForm" class="formClass">
+    <div class="row mt-3">
+      <div  class="col-sm-12 mb-2">
+        <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+        <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+          <div *ngIf="recaptcha.errors?.['required']">Captcha invalido</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 mb-1">
+        <button type="button" class="btn action-search" [ngStyle]="{'background-color': corporationColor , 'color': corporationFontColor , 'border-color': corporationColor  }"
+        (click)="send(form)">Continuar</button>
+      </div>
+    </div>
+
+</form>
+
+<style>
+  .formClass{
+    text-align:center; 
+    width:100%;
+    background-color:white;  
+    border:0px solid red;
+    margin-bottom: 150px;
+    padding-bottom: 100px;
+  }
+</style>

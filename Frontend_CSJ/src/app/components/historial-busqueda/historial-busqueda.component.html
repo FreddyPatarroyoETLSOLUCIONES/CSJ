@@ -1,0 +1,143 @@
+<form action="" [formGroup]="generalForm"  class="formApp">
+    <aside class="vertical-menu">
+        <ul class="list-menu" role="list">
+            <li class="item-list" role="listitem">
+                <a href="javascript:void(0);" class="item-link home">Inicio</a>
+            </li>
+            <li class="item-title">Módulos</li>
+            <li class="item-list" role="listitem">
+                <a href="javascript:void(0);" class="item-link parameter">Parametrización de campos y logos</a>
+            </li>
+            <li class="item-title">General</li>
+            <li class="item-list" role="listitem">
+                <a href="javascript:void(0);" class="item-link logout">Cerrar sesión</a>
+            </li>
+            <li class="item-divider"></li>
+            <li class="item-rol">
+                <p>   
+                Rol de usuario: 
+                </p>
+                    <ul role="list">
+                        <li role="listitem">Administrador</li> 
+                        <li role="listitem">Administrador funcional</li>
+                        <li role="listitem">Usuario interno</li>
+                    </ul>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="container pb-50px">
+    <h2 class="ct-bluePrimary fz-22px fw-bold mb-0px">Historial de busqueda</h2> 
+    <div class="advFilter">
+        <section class="results-search-user mb-70px"> 
+            <div class="table-responsive mt-30px">
+                <table class="mainTable" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th scope="col" (click)=filtroOpciones() style="cursor: pointer">Opciones de busqueda ({{textoBusquedaOrderLabel}})</th>
+                            <th scope="col" (click)="filtroFechas()" style="cursor: pointer">Fecha ({{fechaLabel}})</th>
+                            <th scope="col" class="ta-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>                                                     
+                        <ng-container *ngFor="let element of historicoListTable">                                                           
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Campo de texto abierto: {{element.busqueda.texto_buscar}}</li> 
+                                        <li>Filtro: </li>
+                                            
+                                        <ng-container *ngFor="let filtroInt of element.filtro "> 
+                                            <li><strong>{{filtroInt.id}}:</strong> {{filtroInt.text}}</li>
+                                        </ng-container> 
+                                    
+                                    </ul>
+                                </td>
+                                <td >{{element.fecha_creacion | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                <td>
+                                    <div class="box-button ta-right">
+                                        <button class="do-search" (click)="realizarConsulta(element.busqueda)">Realizar consulta</button>
+                                    </div>
+                                </td>
+                            </tr>                                
+                        </ng-container>                                                 
+                    </tbody>   
+                </table>
+            </div>
+
+                <div class="row align-flex-end mb-30px">
+                    <div class="col-md-3" style="display: table-cell;">                            
+                        <div class="form-group mini mb-0px">
+                            <select name="registrosPorPaginaHistoricoSelect" id="registrosPorPaginaHistoricoSelect" class="form-control" (change)="changePaginadoHistoricoBusqueda()" formControlName="registrosPorPaginaHistoricoSelect"  aria-label="Seleccione una cantidad para mostrar">
+                                <option value="30" selected="selected">Mostrando 30</option>
+                                <option value="50">Mostrando 50</option>
+                                <option value="100">Mostrando 100</option>
+                            </select>
+                        </div>                            
+                    </div>
+                    <div class="col-md-9">
+                        <div class="pagination-container mb-0px">
+                            <nav>
+                                <ul class="pagination" style="flex-wrap: wrap;">
+                                    <li [ngClass]="resultConsult?.previous_page == null ||  historicoPaginaActual == 1 ? 'page-item previous disabled' : 'page-item previous'">
+                                        <button  [disabled]="resultConsult?.previous_page == null ||  historicoPaginaActual == 1" class="page-link" href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(1)" >
+                                            <img src="/assets/media/icons/ic-arrow-previous-last.svg" alt="">
+                                        </button>
+                                    </li>
+                                    <li [ngClass]="resultConsult?.previous_page == null || historicoPaginaActual == 1  ? 'page-item previous disabled' : 'page-item previous'">
+                                        <button  [disabled]="resultConsult?.previous_page == null ||  historicoPaginaActual == 1" class="page-link" href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual - 1)" >
+                                            <img src="/assets/media/icons/ic-arrow-previous.svg" alt="">
+                                        </button>
+                                    </li>
+
+                               <!--      <ng-container *ngFor="let element of historicoPaginaArray">    
+                                        <li class="page-item">
+                                            <a class="page-link"  [ngStyle] = "{'color': currentPage == element ? '#3366CC' : 'black'}"  href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(element)" >{{element}}</a>
+                                        </li> 
+                                    </ng-container>     -->
+                                    
+                                    <li *ngIf="historicoPaginaActual - 2 > 0" class="page-item">
+                                        <a class="page-link"  [ngStyle] = "{'color': 'black'}"  href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual - 2)" >{{historicoPaginaActual - 2}}</a>
+                                    </li> 
+                                    
+                                    <li *ngIf="historicoPaginaActual - 1 > 0" class="page-item">
+                                        <a class="page-link"  [ngStyle] = "{'color': 'black'}"  href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual - 1)" >{{historicoPaginaActual - 1}}</a>
+                                    </li> 
+
+                                    <li class="page-item">
+                                        <a class="page-link"  [ngStyle] = "{'color': '#3366CC' }"  href="javascript:void(0);">{{historicoPaginaActual}}</a>
+                                    </li> 
+
+                                    <li *ngIf="historicoPaginaActual + 1 <= historicoPaginaTotal" class="page-item">
+                                        <a class="page-link"  [ngStyle] = "{'color': 'black'}"  href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual + 1)" >{{historicoPaginaActual + 1}}</a>
+                                    </li> 
+
+                                    <li *ngIf="historicoPaginaActual + 2 <= historicoPaginaTotal" class="page-item">
+                                        <a class="page-link"  [ngStyle] = "{'color':  'black'}"  href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual + 2)" >{{historicoPaginaActual + 2}}</a>
+                                    </li> 
+
+                                    <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                                        <button [disabled]="!resultConsult?.next_page" class="page-link" href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaActual + 1)" >
+                                            <img src="/assets/media/icons/ic-arrow-next.svg" alt="">
+                                        </button>
+                                    </li>
+
+                                    <li [ngClass]="!resultConsult?.next_page  ? 'page-item next disabled' : 'page-item next'">
+                                        <button [disabled]="!resultConsult?.next_page" class="page-link" href="javascript:void(0);" (click)="changePaginadoHistoricoBusqueda(historicoPaginaTotal)" >
+                                            <img src="/assets/media/icons/ic-arrow-next-last.svg" alt="">
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>          
+        </div> 
+    </main>
+</form>
+
+<!--Scripts para funciones b�sicas-->
+
+
+

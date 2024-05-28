@@ -1,0 +1,24 @@
+//Estilos para la barra de búsqueda avanzada
+.title-advance-search{
+    position: relative;
+    background-color: #EFF7FE;
+    width: 100%;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: #093356;
+    font-family: $montserrat;
+    font-weight: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    margin-top: 45px;
+    cursor: pointer;
+    &::before{
+        content: "";
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 15px;
+        top: 2px;
+        background: url(../media/icons/ic_arrow_down.svg) no-repeat center;
+    }
+}

@@ -1,0 +1,15 @@
+//Estilos para el botón/acción de búsqueda
+.submit-search{
+    padding-top: 30px;
+    margin-top: 15px;
+    margin-bottom: 70px;
+    border-top: 1px solid $blues1;
+    .row{
+        justify-content: flex-end;
+        button{
+            &:first-of-type{
+                margin-bottom: 15px;
+            }
+        }
+    } 
+}

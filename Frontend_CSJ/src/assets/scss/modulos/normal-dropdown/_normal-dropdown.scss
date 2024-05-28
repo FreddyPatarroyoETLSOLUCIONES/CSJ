@@ -1,0 +1,71 @@
+//Estilos para los dropdown tranversales
+.dropdown-container{
+    position: relative;
+    .dropdown-content{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        min-width: max-content;
+        z-index: 2;
+        background-color: $white;
+        border-radius: 10px;
+        border: 1px solid #C9C9C9;
+        padding: 5px 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        ul{
+            width: 100%;
+            li{
+                a{
+                    width: 100%;
+                    padding: 5px 15px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    img{
+                        margin-right: 10px;
+                    }
+                    &:hover{
+                        background-color: #e7e7e7;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Drop de tablas
+.active-drop{
+    position: relative;
+    .btn-active{
+        min-width: max-content;
+        padding-right: 25px;
+        background: url(../media/icons/ic_arrow_down_15.svg) no-repeat;
+        background-position: calc(100% - 5px) center;
+    }
+    .content-active{
+        position: absolute;
+        padding: 5px;
+        border: 1px solid #C9C9C9;
+        background-color: #FFF;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        z-index: 2;
+        ul{
+            li{
+                a{
+                    padding: 5px 10px 5px 25px;
+                    text-decoration: none;
+                    color: $black;
+                    &.active{                        
+                        background: url(../media/icons/ic_apply.svg) no-repeat;
+                        background-position: 5px center;                        
+                    }
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

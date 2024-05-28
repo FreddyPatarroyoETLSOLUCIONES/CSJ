@@ -1,0 +1,88 @@
+/* Reseteo de estilos genérico */
+
+//Estilos globales
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    border-width: 0;
+    font-family: 'Work Sans', sans-serif;
+    vertical-align: baseline;
+    //Resaltador de selección en el navegador
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &::selection {
+        background: #B4D8FF;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+//Estilos del cuerpo
+body {
+    max-width: 100%;
+    //height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    font-size: $font-n;
+    //Deshabilitar efecto rebote navegadores en los ejes
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+    //Color fondo
+    background-color: $background-body;
+    scroll-behavior: smooth;
+}
+
+//Elementos de formularios
+button,
+select {
+    text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+}
+
+textarea,
+input:matches( [type="email"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="url"]) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+}
+
+label {
+    display: inline-block;
+    width: auto;
+    position: relative;
+}
+
+//Estilos anchor
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+//Listas
+ol,
+ul {
+    list-style: none;
+}

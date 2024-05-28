@@ -1,0 +1,13 @@
+re-captcha {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.mensaje {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}

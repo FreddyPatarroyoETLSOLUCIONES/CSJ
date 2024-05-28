@@ -1,0 +1,91 @@
+.dropdown{
+    cursor: pointer;
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        right: 10px;
+        top: 35%;
+        width: 17px;
+        height: 12px;
+        background: url(../media/icons/ic_dropdown_arrow.svg) no-repeat center;
+    }
+}
+.btn-dropdown{
+    position: relative;
+}
+.dropdown-content{
+    display: none;
+    background-color: #FFF;
+    border: 1px solid #ABADAD;
+    padding: 12px;
+    border-radius: 10px;
+    position: absolute;  
+    width: 100%;  
+    top: calc(100% + 10px);
+    max-height: 170px;
+    overflow: auto;
+    z-index: 2;
+    .item-link{
+        cursor: pointer;
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        &.active, &:hover, &:active, &:focus{
+            color: #004884;
+            text-decoration: underline;
+        }
+    }
+    &-advance{
+        @extend .dropdown-content;
+        overflow: unset;
+        max-height: none; 
+        min-width: 320px;
+        .header{
+            position: relative;
+            padding-right: 45px;
+            .close-drop{
+                position: absolute;
+                top: 10px;
+                right: 0;
+                width: 20px;
+                height: 20px;
+                background: url(../media/icons/ic_close_dropdown.svg) no-repeat center;
+                background-color: transparent;
+            }
+        }       
+        .body{
+            max-height: 200px;
+            overflow: auto;
+        }
+        .footer{
+            padding-top: 10px;
+        }
+    }
+    &-btn{
+        @extend .dropdown-content;
+        padding: 5px;
+        border-radius: 5px;
+        width: max-content;
+        top: 100%;
+        .item-link{
+            margin-bottom: 2px;
+            img{
+                width: 25px;
+                height: 25px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.btn-dropdown{
+    &:hover, &:active, &:focus{
+        .dropdown-content-btn{
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,479 @@
+//Estilos formularios
+.formApp{
+    .form-group{
+        position: relative;
+        margin-bottom: 25px;
+        .form-label{
+            @include defaultFont(1, $c:$gray, $fz:16px, $fw:600);
+        } 
+        .form-control{
+            position: relative;
+            height: 45px;
+            border: 1px solid #C9C9C9;
+            border-radius: 10px;
+            width: 100%;
+            padding: 5px 60px 5px 15px;
+            font-size: 16px;
+            background-color: $white;
+            transition: .25s all;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            &::placeholder{
+                color: #757575;
+                opacity: 1;
+            }   
+            &:active, &:focus{
+                border-color: #757575;                
+                outline: 3px solid rgb(0, 96, 223);
+                box-shadow: 0px 0px 0px 3px rgb(0, 96, 223);
+            }    
+            &:disabled, &[disabled]{
+                background-color: #EEEEEE;
+                cursor: not-allowed;
+            }
+        }
+        .form-button{            
+            position: absolute;
+            cursor: pointer;
+            right: 1px;
+            top: 20px;
+            width: 54px;
+            height: 43px;       
+            border-radius: 0 10px 10px 0;
+            border-left: 1px solid #C9C9C9;
+            transition: .25s all;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            &:active, &:focus{        
+                outline: 3px solid rgb(0, 96, 223);
+                box-shadow: 0px 0px 0px 3px rgb(0, 96, 223);
+            }
+            &.search{
+                background-image: url(../media/icons/ic_search.svg);
+            }
+            &.tooltip{
+                border-left: 0;
+                background-image: url(../media/icons/ic_info.svg);
+                .tooltip{
+                    background: none;
+                    .tooltip-text{
+                        left: -165px !important;
+                        top: 160%;
+                        text-align: left;
+                        border-radius: 10px 0 10px 10px !important;                      
+                    }
+                }
+            }
+            &.date{
+                border-left: 0;
+                background-image: url(../media/icons/ic_calendar.svg);
+            }
+            &.select{
+                width: max-content;
+                height: 45px;
+                top: 19px;
+                right: 0;
+                font-weight: 600;
+                padding-left: 15px;
+                padding-right: 15px;
+                border: 1px solid #004884;
+                border-radius: 0 10px 10px 0;
+                color: #004884;
+            }
+            &.pass{
+                border-left: 0;
+                background-image: url(../media/icons/ic_eye_on.svg);
+                &-off{
+                    @extend .pass;
+                    background-image: url(../media/icons/ic_eye_off.svg);
+                }
+            }
+            &-space{
+                @extend .form-button;
+                right: 40px;
+            }
+        }
+        &-dropdown{
+            @extend .form-group;                       
+            .form-control{
+                cursor: pointer;
+                display: flex;
+                overflow: auto;
+                align-items: center; 
+                padding-right: 55px;
+                line-height: 30px;
+                text-overflow: ellipsis;
+                &.active{
+                    &::after{
+                        transform: rotate(180deg);
+                    }
+                }
+                &::-webkit-scrollbar {                  
+                    height: 4px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: #c9c9c9;
+                    border-radius: 2px;
+                    border: 1px solid #FFF;
+                }
+            }            
+            &::after{
+                content: "";
+                pointer-events: none;
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+                top: 28px;
+                width: 25px;
+                height: 25px;
+                background-image: url(../media/icons/ic_arrow_down.svg);
+                background-repeat: no-repeat;
+                transition: .25s all;
+                z-index: 2;
+            }
+            &::before{
+                content: "";
+                pointer-events: none;
+                cursor: pointer;
+                position: absolute;
+                width: 54px;
+                height: 40px;
+                z-index: 1;
+                right: 2px;
+                top: 21px;         
+                border-radius: 0 9px 9px 0;      
+                background: linear-gradient(270deg, #FFFFFF 82.79%, rgba(255, 255, 255, 0) 100%);
+            }
+            .dropdown-content{
+                display: none;
+                padding: 5px 0;
+                border-radius: 10px;
+                border: 1px solid #C9C9C9;
+                position: absolute;
+                top: 100%;
+                min-width: 100%;
+                max-height: 200px;
+                overflow: auto;
+                z-index: 4;
+                background-color: #FFF;                
+                .dropdown-item{
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    padding: 10px 15px;
+                    &:hover, &:active, &:focus{
+                        background-color: #e9e9e9;
+                    }
+                }
+            }
+            .item-selected{
+                cursor: default;
+                background-color: #37424d;
+                color: $white;
+                border-radius: 23px;
+                height: 23px;
+                min-width: max-content;
+                display: flex;
+                align-items: center;
+                padding: 3px 10px;
+                margin-right: 5px;
+                line-height: 16px;
+                .delete{
+                    cursor: pointer;
+                    width: 15px;
+                    height: 15px;
+                    margin-left: 5px;
+                    background: url(../media/icons/ic_delete_white.svg) no-repeat center;
+                }
+            }
+            &.mini{
+                @extend .form-group;
+                .form-control{
+                    height: 30px;
+                    line-height: 20px;
+                    font-weight: bold;
+                    font-size: 14px;
+                    min-width: 270px;
+                }
+                &::after{
+                    top: 3px;
+                }
+                &::before{
+                    top: 1px;
+                    width: 45px;
+                    height: 28px;
+                }
+            }
+        }
+        &-double{
+            @extend .form-group;
+            display: flex;
+            align-items: flex-start;
+            .form-left{
+                position: relative;
+                width: 50%;
+                .form-control{
+                    border-radius: 10px 0 0 10px;
+                    border-right: 0;
+                }
+            }
+            .form-right{
+                position: relative;
+                width: 50%;
+                .form-control{
+                    border-radius: 0 10px 10px 0;
+                }
+                &-select{
+                    @extend .form-right;
+                    .form-control{                        
+                        padding-right: 50px;
+                    }
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        right: 15px;
+                        top: 28px;
+                        width: 25px;
+                        height: 25px;
+                        background-image: url(../media/icons/ic_arrow_down.svg);
+                        background-repeat: no-repeat;
+                    }
+                }
+                &-nolabel{
+                    @extend .form-right;
+                    .form-group{
+                        &::after{
+                            top: 10px;
+                        }
+                        &::before{
+                            top: 1px;
+                        }
+                    }
+                    .form-control{
+                        margin-top: 19px;                        
+                    }
+                }
+            }
+            &-nolabel{
+                @extend .form-group-double;
+                .form-right-select{
+                    &::after{
+                        top: 10px;
+                    }
+                }
+            }
+            &-button{
+                @extend .form-group;
+                display: flex;
+                align-items: flex-start;
+                .select{
+                    min-width: 30%;
+                    height: 45px;
+                    font-weight: 600;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    border: 1px solid #004884;
+                    border-radius: 0 10px 10px 0 !important;
+                    color: #004884;
+                }
+                .form-group-dropdown, .form-group{
+                    width: 70%;
+                    .dropdown, input{
+                        border-radius: 10px 0 0 10px
+                    }
+                }
+            }
+        }
+        &-exam{
+            @extend .form-group;
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            align-items: stretch;            
+            .form-control{
+                position: relative;
+                flex: 1 1 auto;
+                width: 1%;
+                min-width: 0;
+                border-radius: 10px 0 0 10px;
+                &[type="file"] {
+                    overflow: hidden;      
+                    opacity: 0;
+                    position: absolute;
+                    width: 100%;
+                    right: 0;
+                    &:not(:disabled):not([readonly]) {
+                      cursor: pointer;
+                    }
+                    visibility: hidden;
+                    color: transparent;
+                }
+            }
+            .form-label{
+                height: 45px;
+                border-radius: 0 10px 10px 0;
+                border: 1px solid #004884;
+                color: #004884;
+                font-weight: 400;
+                line-height: 32px;
+                padding: 5px 10px;
+                display: inline-block;
+                width: auto;
+                position: relative;
+            }
+            .tooltip{
+                top: 2px;
+                right: 103px;
+                .tooltip{
+                    right: 0;
+                }
+            }
+        }
+        &.invalidForm{
+            .form-control{
+                border-color: $redPrimary;
+            }
+            .helper-text{
+                color: $redPrimary;
+            }
+        }
+        &.mini{
+            .form-control{
+                appearance: revert;
+                height: 30px;
+                font-size: 14px;
+                font-weight: 700;
+            } 
+        }
+        .helper-text{
+            margin-top: 5px;
+            background: url(../media/icons/ic_helper_text.svg) no-repeat left top;
+            padding-left: 20px;
+            @include defaultFont(1, $fz:14px, $c: #757575);
+        }
+    }
+    .form-check {
+        display: flex;
+        min-height: 15px;
+        padding-left: 20px;
+        margin-bottom: 25px;          
+        .form-check-input {
+            float: left;
+            margin-right: 10px;
+            margin-left: -20px;
+            min-width: 15px;
+            max-width: 15px;
+            height: 15px;
+            margin-top: 2px;
+            vertical-align: top;
+            background-color: $white;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 9px;
+            border: 1px solid #757575;
+            appearance: none;
+            transition: .25s all;            
+            &[type="checkbox"]{
+                border-radius: 3px;
+            }
+            &[type="radio"]{
+                border-radius: 100%;
+            }
+            &:focus {
+                outline: 3px solid rgb(0, 96, 223);
+                box-shadow: 0px 0px 0px 3px rgb(0, 96, 223);
+            }
+            &:checked{
+                background-color: #004884;
+                &[type="checkbox"]{
+                    background-image: url(../media/icons/ic_checkbox.svg);
+                }
+                &[type="radio"]{
+                    background-image: url(../media/icons/ic_radio.svg);
+                }
+            }
+            &[type="checkbox"]:indeterminate{
+                background-color: #004884;
+                background-image: url(../media/icons/ic_check_indeterminated.svg);
+            }              
+            &:disabled, &[disabled]{
+                cursor: not-allowed;
+                opacity: .5;
+                background-color: #b9b9b9;                
+                ~ &:checked{
+                    cursor: not-allowed;
+                    background-color: #b9b9b9;                    
+                }
+                ~ .form-label{
+                    cursor: not-allowed;
+                    opacity: .5;
+                }
+            }
+        }
+        .form-label{
+            @include defaultFont(1, $c:#636363, $fz:16px, $fw:600);
+        }
+    }
+}
+
+.predictable-text{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 138px;
+    overflow: auto;
+    border-radius: 10px;
+    padding: 5px 0;
+    background-color: #FFF;
+    border: 1px solid #C9C9C9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    ul{
+        li{
+            padding: 10px 15px;
+            border-bottom: 1px solid #C9C9C9;
+            &:last-of-type{
+                border: 0;
+            }
+            a{
+                width: 100%;
+            }
+        }
+    }
+}
+
+/****Cajas contenedoras para checks de Consejo superior de la Judicatura****/
+
+.checkCards{
+    .card{
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        &--active{
+            @extend .card;
+            padding: 30px 15px;
+            margin: 15px 0;
+            background-color: #F4F4F4;
+            border-bottom: 1px solid #DFDFDF;
+            border-right: 1px solid #DFDFDF;
+        }
+        .aditional-content{
+            width: 100%;
+            margin-left: 30px;
+            padding-left: 15px;
+            border-left: 1px solid #C8C8C8;
+        }        
+        .form-check{
+            min-width: 300px;
+        }
+        .form-group{
+            select{
+                appearance: none !important;
+            }
+        }
+    } 
+}

@@ -1,0 +1,202 @@
+<!-- #region modal -->
+<div id="Modal" class="modal" [ngStyle]="{'display': modal_quiz ? 'block' : 'none'}">
+    <!-- Modal content -->
+    <div class="modal-content-medium-2">
+        <div class="modal-header">
+            <span *ngIf="UrlRef != 'CE' && UrlRef != 'CNSJ' && UrlRef != 'CC' && UrlRef != 'CNDJ'">
+                <img src="../../../../assets/media/images/img-corte-suprema-vertical.png" alt="" />
+            </span>   
+            <span *ngIf="UrlRef == 'CE'">
+                <img src="../../../../assets/media/images/img_consejo_estado.png" alt="" />
+            </span>
+            <span *ngIf="UrlRef == 'CNSJ'">
+                <img src="../../../../assets/media/images/img_consejo_superior_judicatura.png" alt="" />
+            </span>  
+            <span *ngIf="UrlRef == 'CC'">
+                <img src="../../../../assets/media/images/img_corte_constitucional.png" alt="" />
+            </span>  
+            <span *ngIf="UrlRef == 'CNDJ'">
+                <img src="../../../../assets/media/images/img_disciplina_juridica.png" alt="" />
+            </span>           
+            <h2>Encuesta de Satisfacción</h2>
+            <button type="button" aria-label="Cerrar encuesta" class="close-modal" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body quiz scrolled">
+            <p class="fw-bold">Por favor, califique su nivel de satisfacción para cada uno de los siguientes aspectos, según la experiencia de consulta:</p>
+            <form action="" class="formApp mt-30px">
+                <div class="row">
+                    <div class="col-12 title-radio">
+                        <div class="row align-flex-end">
+                            <div class="col-lg-5"></div>
+                            <div class="col-lg-2">
+                                <p class="ct-redPrimary">Poco satisfecho</p>
+                            </div>
+                            <div class="col-lg-2">
+                                <p>Aceptable</p>
+                            </div>
+                            <div class="col-lg-2">
+                                <p class="ct-greenPrimary">Muy satisfecho</p>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-5 mt-15px">
+                                <p><strong>1.</strong> Nivel de satisfacción con los resultados obtenidos.</p>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="insatisfecho" class="form-check-input" name="radio1" [(ngModel)]="satisfactionSurvey.responses[0].reply" value="unsatisfied">
+                                    <label for="insatisfecho" class="form-label">
+                                        <span class="d-none">Poco satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="Aceptable" class="form-check-input" name="radio1" [(ngModel)]="satisfactionSurvey.responses[0].reply" value="acceptable">
+                                    <label for="Aceptable" class="form-label">
+                                        <span class="d-none">Aceptable</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="satisfecho" class="form-check-input" name="radio1" [(ngModel)]="satisfactionSurvey.responses[0].reply" value="very_satisfied">
+                                    <label for="satisfecho" class="form-label">
+                                        <span class="d-none">Muy satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-5 mt-15px">
+                                <p><strong>2.</strong> Facilidad de uso de los filtros de búsqueda.</p>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="insatisfecho2" class="form-check-input" name="radio2" [(ngModel)]="satisfactionSurvey.responses[1].reply" value="unsatisfied">
+                                    <label for="insatisfecho2" class="form-label">
+                                        <span class="d-none">Poco satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="Aceptable2" class="form-check-input" name="radio2" [(ngModel)]="satisfactionSurvey.responses[1].reply" value="acceptable">
+                                    <label for="Aceptable2" class="form-label">
+                                        <span class="d-none">Aceptable</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="satisfecho2" class="form-check-input" name="radio2" [(ngModel)]="satisfactionSurvey.responses[1].reply" value="very_satisfied">
+                                    <label for="satisfecho2" class="form-label">
+                                        <span class="d-none">Muy satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-5 mt-15px">
+                                <p><strong>3.</strong> Interfaz entendible para el usuario.</p>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="insatisfecho3" class="form-check-input" name="radio3" [(ngModel)]="satisfactionSurvey.responses[2].reply" value="unsatisfied">
+                                    <label for="insatisfecho3" class="form-label">
+                                        <span class="d-none">Poco satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="Aceptable3" class="form-check-input" name="radio3" [(ngModel)]="satisfactionSurvey.responses[2].reply" value="acceptable">
+                                    <label for="Aceptable3" class="form-label">
+                                        <span class="d-none">Aceptable</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="satisfecho3" class="form-check-input" name="radio3" [(ngModel)]="satisfactionSurvey.responses[2].reply" value="very_satisfied">
+                                    <label for="satisfecho3" class="form-label">
+                                        <span class="d-none">Muy satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-5 mt-15px">
+                                <p><strong>4.</strong> Información suficiente en los resultados de la búsqueda.</p>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="insatisfecho4" class="form-check-input" name="radio4" [(ngModel)]="satisfactionSurvey.responses[3].reply" value="unsatisfied">
+                                    <label for="insatisfecho4" class="form-label">
+                                        <span class="d-none">Poco satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="Aceptable4" class="form-check-input" name="radio4" [(ngModel)]="satisfactionSurvey.responses[3].reply" value="acceptable">
+                                    <label for="Aceptable4" class="form-label">
+                                        <span class="d-none">Aceptable</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 mt-15px">
+                                <div class="form-check">
+                                    <input type="radio" id="satisfecho4" class="form-check-input" name="radio4" [(ngModel)]="satisfactionSurvey.responses[3].reply" value="very_satisfied">
+                                    <label for="satisfecho4" class="form-label">
+                                        <span class="d-none">Muy satisfecho</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-11 mt-15px" *ngIf="validateForm==true">
+                        <p class="ct-redPrimary">Si desea continuar, por favor califique todos los ítems de la encuesta</p>
+                    </div>
+                </div>
+                <p class="fw-medium mt-60px">Si desea, deje un comentario sobre su experiencia en la plataforma de consulta que nos ayude a mejorar</p>
+                <div class="form-group my-15px">
+                    <textarea class="form-control" name="comment" id="comment" cols="30" rows="30" placeholder="Escribe aquí...." [(ngModel)]="satisfactionSurvey.observations" maxlength="1000"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" aria-label="Cerrar encuesta" class="btn btn-text close" (click)="closeModal() ">
+                <span>Cancelar</span>
+            </button>
+            <button type="button" aria-label="Envier encuesta" class="btn blue" (click)="sendSuvery() ">
+                <span>Enviar</span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+
+<!-- #region modal -->
+<div id="Modal" class="modal" style="display: block;" [ngStyle]="{'display': modal_confirm ? 'block' : 'none'}">
+    <!-- Modal content -->
+    <div class="modal-content-mini">
+        <div class="modal-body">
+            <div class="ta-center">
+                <img src="../../../../assets/media/icons/ic_ok_modal.svg" alt="¡Encuesta enviada!">
+                <p class="fw-medium mt-25px">¡Encuesta enviada!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+<hr>
+<button type="button" class="btn quiz " aria-label="Encuesta de satisfacción" (click)="modalChange()">Encuesta de satisfacción</button>

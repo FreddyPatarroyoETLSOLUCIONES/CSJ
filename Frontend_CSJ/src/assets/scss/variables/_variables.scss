@@ -1,0 +1,112 @@
+//-------------------------------- Variables
+//Charset
+@charset "UTF-8";
+//--------
+//Fuente default del framework
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/////--------/////-----////
+$background-body: #FFFFFF;
+$text-color: #4B4B4B;
+$text-enable: #717375;
+$text-error: #D43D51;
+$titles-color: #004884;
+$blue-color: #004884;
+// mapa para font-weight
+$mapFW: ( thin: 100,
+light: 300,
+regular: 400,
+semibold: 500,
+medium: 600,
+bold: 700,
+extrabold: 900,
+);
+
+$input-background: #FFF;
+//Fonts acá se añaden o se usa roboto por defecto para el framework
+$worksans: 'Work Sans', sans-serif;
+$montserrat:'Montserrat', sans-serif;
+// mapa para font-family
+$mapFF: ( worksans: $worksans,
+montserrat: $montserrat);
+
+
+
+//Size Fonts
+$font-p: 12px;
+$font-n: 16px;
+$font-g: 18px;
+///Vairables para la grid
+$grid-columns: 12;
+$grid-gutter: 30px; 
+//
+//
+// 
+// Variables Color
+$bluePrimary: #19335A;
+$yellowPrimary: #FFAB00;
+$greenPrimary: #007367;
+$lighBluePrimary: #3366CC;
+$redPrimary: #C11F3D;
+$red: #E50000;
+$lighGreenPrimary: #0B986A;
+$gray: #636363;
+$gray2: #E1E1E1;
+$black: #000;
+$white: #FFF;
+$blues1: #B8CFE3;
+$blues2: #6E8497;
+$blues3: #093356;
+$blues4: #004884;
+$yellows1: #FFCF6D;
+$yellows2: #D9AE57;
+$yellows3: #714C00;
+$purple: #9F0086;
+$transparent: transparent;
+
+// mapas para Color y Fondo
+$mapCTexto: (
+    ct-bluePrimary: $bluePrimary,
+    ct-yellowPrimary: $yellowPrimary,
+    ct-greenPrimary: $greenPrimary,
+    ct-lighBluePrimary: $lighBluePrimary,
+    ct-redPrimary: $redPrimary,
+    ct-lighGreenPrimary: $lighGreenPrimary,
+    ct-red: $red,
+    ct-gray: $gray,
+    ct-gray2: $gray2,
+    ct-black: $black,
+    ct-white: $white,
+    ct-blues1: $blues1,
+    ct-blues2: $blues2,
+    ct-blues3: $blues3,
+    ct-blues4: $blues4,
+    ct-yellows1: $yellows1,
+    ct-yellows2: $yellows2,
+    ct-yellows3: $yellows3,
+    ct-purple: $purple,
+    ct-transparent: $transparent,
+);
+
+$mapBG: (
+    bg-bluePrimary: $bluePrimary,
+    bg-yellowPrimary: $yellowPrimary,
+    bg-greenPrimary: $greenPrimary,
+    bg-lighBluePrimary: $lighBluePrimary,
+    bg-redPrimary: $redPrimary,
+    bg-lighGreenPrimary: $lighGreenPrimary,
+    bg-red: $red,
+    bg-gray: $gray,
+    bg-gray2: $gray2,
+    bg-black: $black,
+    bg-white: $white,
+    bg-blues1: $blues1,
+    bg-blues2: $blues2,
+    bg-blues3: $blues3,
+    bg-blues4: $blues4,
+    bg-yellows1: $yellows1,
+    bg-yellows2: $yellows2,
+    bg-yellows3: $yellows3,
+    bg-purple: $purple,
+    bg-transparent: $transparent,
+);
+

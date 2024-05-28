@@ -1,0 +1,20 @@
+//Estilos para las estrellas de calificación
+.rate-results{
+    width: max-content;
+    h5{
+        font-size: 16px;
+        font-weight: 600;
+        color: #004884;
+        margin-bottom: 10px;
+    }
+    .rate-star{
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+        background: url(../media/icons/ic_star.svg) no-repeat center;
+        &.checked{
+            background: url(../media/icons/ic_star_on.svg) no-repeat center;
+        }
+    } 
+}

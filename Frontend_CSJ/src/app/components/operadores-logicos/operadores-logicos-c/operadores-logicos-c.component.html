@@ -1,0 +1,629 @@
+<div *ngIf="shared.flagIncExButtomsC == true" class="double-field" [formGroup]="generalForm">
+    <div *ngIf="shared.grupoCriterioC.length >= 0" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double mb-10px">
+          <div class="form-left"> <label for="textoIn" class="form-label">Texto</label> <input
+              type="text" id="textoIn" class="form-control" placeholder="Ingrese un texto"
+              aria-label="Escriba una palabra" formControlName="textoAux1C" maxlength="200"> </div>
+          <div class="form-right-select"
+            *ngIf="shared.flagMoreAnd1C == false && shared.flagMoreOr1C == false && shared.flagMoreEx1C == false">
+            <label for="textoIn2" class="form-label">Criterio</label>
+            <select name="textoIn2" class="form-control" id="textoCriterio1" role="search"
+              aria-labelledby="textoCriterio1" formControlName="textoCriterio1C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}}
+                </option>
+              </ng-container> </select>
+          </div>
+
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'Y Que Contenga' && shared.flagMoreAnd1C == true"
+            class="form-right-select"> <label for="textoIn2" class="form-label">Criterio</label>
+            <select name="textoIn2" class="form-control" id="textoCriterio1"
+              formControlName="textoCriterio1C" aria-label="Seleccione un criterio"
+              placeholder="Seleccione un criterio"> <ng-container
+                *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'O Que Contenga' && shared.flagMoreOr1C == true"
+            class="form-right-select"> <label for="textoIn2" class="form-label">Criterio</label>
+            <select name="textoIn2" class="form-control" id="textoCriterio1"
+              formControlName="textoCriterio1C" aria-label="Seleccione un criterio"
+              placeholder="Seleccione un criterio"> <ng-container
+                *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'Que Excluya' && shared.flagMoreEx1C == true"
+            class="form-right-select"> <label for="textoIn2" class="form-label">Criterio</label>
+            <select name="textoIn2" class="form-control" id="textoCriterio1"
+              formControlName="textoCriterio1C" aria-label="Seleccione un criterio"
+              placeholder="Seleccione un criterio"> <ng-container
+                *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio1C')?.value == '' || shared.generalForm.get('textoAux1C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Añadir criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio1C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux1C')?.value != '' && shared.flagMoreAnd1C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd1C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'Y Que Contenga' && shared.flagMoreAnd1C == true && shared.grupoCriterioC.length == 1"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd1C(); lessAnd1C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio1C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux1C')?.value != '' && shared.flagMoreOr1C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr1C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'O Que Contenga' && shared.flagMoreOr1C == true && shared.grupoCriterioC.length == 1"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr1C(); lessOr1C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio1C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux1C')?.value != '' && shared.flagMoreEx1C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx1C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio1C')?.value == 'Que Excluya' && shared.flagMoreEx1C == true && shared.grupoCriterioC.length == 1"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx1C(); lessEx1C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 0" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control"
+              placeholder="Ingrese un texto" aria-label="Escriba una palabra"
+              formControlName="textoAux2C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 1 && (shared.flagMoreAnd2C == false && shared.flagMoreOr2C == false && shared.flagMoreEx2C == false)"
+            class="form-right-select"> <select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio2C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select></div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'Y Que Contenga' && shared.flagMoreAnd2C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio2C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'O Que Contenga' && shared.flagMoreOr2C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio2C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'Que Excluya' && shared.flagMoreEx2C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio2C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio2C')?.value == '' || shared.generalForm.get('textoAux2C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio2C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux2C')?.value != '' && shared.flagMoreAnd2C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd2C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'Y Que Contenga' && shared.flagMoreAnd2C == true && shared.grupoCriterioC.length == 2"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd2C(); lessAnd2C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio2C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux2C')?.value != '' && shared.flagMoreOr2C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr2C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'O Que Contenga' && shared.flagMoreOr2C == true && shared.grupoCriterioC.length == 2"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr2C(); lessOr2C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio2C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux2C')?.value != '' && shared.flagMoreEx2C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx2C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio2C')?.value == 'Que Excluya' && shared.flagMoreEx2C == true && shared.grupoCriterioC.length == 2"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx2C(); lessEx2C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 1" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux3C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 2  && (shared.flagMoreAnd3C == false && shared.flagMoreOr3C == false && shared.flagMoreEx3C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio3C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'Y Que Contenga' && shared.flagMoreAnd3C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio3C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'O Que Contenga' && shared.flagMoreOr3C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio3C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'Que Excluya' && shared.flagMoreEx3C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio3C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio3C')?.value == '' || shared.generalForm.get('textoAux3C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio3C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux3C')?.value != '' && shared.flagMoreAnd3C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd3C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'Y Que Contenga' && shared.flagMoreAnd3C == true && shared.grupoCriterioC.length == 3"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd3C(); lessAnd3C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio3C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux3C')?.value != '' && shared.flagMoreOr3C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr3C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'O Que Contenga' && shared.flagMoreOr3C == true && shared.grupoCriterioC.length == 3"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.shared.lessOr3C(); lessOr3C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio3C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux3C')?.value != '' && shared.flagMoreEx3C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx3C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio3C')?.value == 'Que Excluya' && shared.flagMoreEx3C == true && shared.grupoCriterioC.length == 3"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr3C(); lessOr3C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 2" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux4C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 3  && (shared.flagMoreAnd4C == false && shared.flagMoreOr4C == false && shared.flagMoreEx4C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio4C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'Y Que Contenga' && shared.flagMoreAnd4C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio4C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'O Que Contenga' && shared.flagMoreOr4C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio4C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'Que Excluya' && shared.flagMoreEx4C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio4C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio4C')?.value == '' || shared.generalForm.get('textoAux4C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio4C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux4C')?.value != '' && shared.flagMoreAnd4C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd4C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'Y Que Contenga' && shared.flagMoreAnd4C == true && shared.grupoCriterioC.length == 4"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd4C(); lessAnd4C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio4C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux4C')?.value != '' && shared.flagMoreOr4C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr4C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'O Que Contenga' && shared.flagMoreOr4C == true && shared.grupoCriterioC.length == 4"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr4C(); lessOr4C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio4C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux4C')?.value != '' && shared.flagMoreEx4C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx4C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio4C')?.value == 'Que Excluya' && shared.flagMoreEx4C == true && shared.grupoCriterioC.length == 4"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx4C(); lessEx4C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 3" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux5C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 4  && (shared.flagMoreAnd5C == false && shared.flagMoreOr5C == false && shared.flagMoreEx5C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio5C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'Y Que Contenga' && shared.flagMoreAnd5C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio5C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'O Que Contenga' && shared.flagMoreOr5C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio5C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'Que Excluya' && shared.flagMoreEx5C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio5C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio5C')?.value == '' || shared.generalForm.get('textoAux5C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio5C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux5C')?.value != '' && shared.flagMoreAnd5C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd5C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'Y Que Contenga' && shared.flagMoreAnd5C == true && shared.grupoCriterioC.length == 5"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd5C(); lessAnd5C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio5C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux5C')?.value != '' && shared.flagMoreOr5C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr5C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'O Que Contenga' && shared.flagMoreOr5C == true && shared.grupoCriterioC.length == 5"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr5C(); lessOr5C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio5C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux5C')?.value != '' && shared.flagMoreEx5C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx5C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio5C')?.value == 'Que Excluya' && shared.flagMoreEx5C == true && shared.grupoCriterioC.length == 5"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx5C(); lessEx5C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 4" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux6C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 5  && (shared.flagMoreAnd6C == false && shared.flagMoreOr6C == false && shared.flagMoreEx6C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio6C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'Y Que Contenga' && shared.flagMoreAnd6C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio6C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'O Que Contenga' && shared.flagMoreOr6C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio6C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'Que Excluya' && shared.flagMoreEx6C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio6C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio6C')?.value == '' || shared.generalForm.get('textoAux6C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio6C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux6C')?.value != '' && shared.flagMoreAnd6C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd6C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'Y Que Contenga' && shared.flagMoreAnd6C == true && shared.grupoCriterioC.length == 6"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd6C(); lessAnd6C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio6C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux6C')?.value != '' && shared.flagMoreOr6C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr6C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'O Que Contenga' && shared.flagMoreOr6C == true && shared.grupoCriterioC.length == 6"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr6C(); lessOr6C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio6C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux6C')?.value != '' && shared.flagMoreEx6C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx6C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio6C')?.value == 'Que Excluya' && shared.flagMoreEx6C == true && shared.grupoCriterioC.length == 6"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx6C(); lessEx6C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 5" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux7C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 6  && (shared.flagMoreAnd7C == false && shared.flagMoreOr7C == false && shared.flagMoreEx7C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio7C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'Y Que Contenga' && shared.flagMoreAnd7C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio7C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'O Que Contenga' && shared.flagMoreOr7C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio7C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'Que Excluya' && shared.flagMoreEx7C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio7C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio7C')?.value == '' || shared.generalForm.get('textoAux7C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio7C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux7C')?.value != '' && shared.flagMoreAnd7C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd7C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'Y Que Contenga' && shared.flagMoreAnd7C == true && shared.grupoCriterioC.length == 7"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd7C(); lessAnd7C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio7C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux7C')?.value != '' && shared.flagMoreOr7C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr7C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'O Que Contenga' && shared.flagMoreOr7C == true && shared.grupoCriterioC.length == 7"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr7C(); lessOr7C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio7C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux7C')?.value != '' && shared.flagMoreEx7C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx7C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio7C')?.value == 'Que Excluya' && shared.flagMoreEx7C == true && shared.grupoCriterioC.length == 7"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx7C(); lessEx7C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 6" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux8C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 7  && (shared.flagMoreAnd8C == false && shared.flagMoreOr8C == false && shared.flagMoreEx8C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio8C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'Y Que Contenga' && shared.flagMoreAnd8C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio8C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'O Que Contenga' && shared.flagMoreOr8C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio8C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'Que Excluya' && shared.flagMoreEx8C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio8C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio8C')?.value == '' || shared.generalForm.get('textoAux8C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio8C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux8C')?.value != '' && shared.flagMoreAnd8C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd8C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'Y Que Contenga' && shared.flagMoreAnd8C == true && shared.grupoCriterioC.length == 8"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd8C(); lessAnd8C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio8C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux8C')?.value != '' && shared.flagMoreOr8C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr8C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'O Que Contenga' && shared.flagMoreOr8C == true && shared.grupoCriterioC.length == 8"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr8C(); lessOr8C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio8C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux8C')?.value != '' && shared.flagMoreEx8C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx8C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio8C')?.value == 'Que Excluya' && shared.flagMoreEx8C == true && shared.grupoCriterioC.length == 8"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx8C(); lessEx8C()">Eliminar</button>
+      </div>
+    </div>
+    <div *ngIf="shared.grupoCriterioC.length > 7" class="row align-center">
+      <div class="col-lg-8 col-10">
+        <div class="form-group-double-nolabel mb-10px">
+          <div class="form-left"> <input type="text" role="search" name="textoIn"
+              aria-labelledby="textoIn" id="textoIn" class="form-control" placeholder=""
+              aria-label="Escriba una palabra" formControlName="textoAux9C" maxlength="200"> </div>
+          <div
+            *ngIf="shared.grupoCriterioC.length == 8  && (shared.flagMoreAnd9C == false && shared.flagMoreOr9C == false && shared.flagMoreEx9C == false)"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio3" formControlName="textoCriterio9C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criteriosC">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'Y Que Contenga' && shared.flagMoreAnd9C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio9" formControlName="textoCriterio9C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioYContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'O Que Contenga' && shared.flagMoreOr9C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio9C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioOContenga">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+          <div
+            *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'Que Excluya' && shared.flagMoreEx9C == true"
+            class="form-right-select"><select name="textoIn2" class="form-control"
+              id="textoCriterio1" formControlName="textoCriterio9C"
+              aria-label="Seleccione un criterio" placeholder="Seleccione un criterio">
+              <ng-container *ngFor="let element of shared.criterioExcluya">
+                <option value="{{element.texto}}">{{element.texto}} </option>
+              </ng-container> </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"> <button
+          *ngIf="(shared.generalForm.get('textoCriterio9C')?.value == '' || shared.generalForm.get('textoAux9C')?.value == '')"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          disabled>Agregar</button>
+        <button
+          *ngIf="(shared.generalForm.get('textoCriterio9C')?.value == 'Y Que Contenga' && shared.generalForm.get('textoAux9C')?.value != '' && shared.flagMoreAnd9C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreAnd9C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'Y Que Contenga' && shared.flagMoreAnd9C == true && shared.grupoCriterioC.length == 9"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessAnd9C(); lessAnd9C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio9C')?.value == 'O Que Contenga' && shared.generalForm.get('textoAux9C')?.value != '' && shared.flagMoreOr9C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreOr9C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'O Que Contenga' && shared.flagMoreOr9C == true && shared.grupoCriterioC.length == 9"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessOr9C(); lessOr9C()">Eliminar</button> <button
+          *ngIf="(shared.generalForm.get('textoCriterio9C')?.value == 'Que Excluya' && shared.generalForm.get('textoAux9C')?.value != '' && shared.flagMoreEx9C == false)"
+          role="button" type="button" class="btn btn-text-blue" aria-label="Agregar criterio"
+          (click)="shared.moreEx9C()">Agregar</button> <button
+          *ngIf="shared.generalForm.get('textoCriterio9C')?.value == 'Que Excluya' && shared.flagMoreEx9C == true && shared.grupoCriterioC.length == 9"
+          role="button" type="button" class="btn btn-text-red mt-10px" aria-label="Agregar criterio"
+          (click)="shared.lessEx9C(); lessEx9C()">Eliminar</button>
+      </div>
+    </div>
+  </div>

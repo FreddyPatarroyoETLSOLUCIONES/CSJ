@@ -1,0 +1,43 @@
+/*Alienaciones*/
+
+/// Displays
+//-------------------- Display items
+$listDisplays: block,
+none,
+inline-block,
+flex;
+@each $Displays in $listDisplays {
+    //----- tipo de dispoción de  la capa
+    .d-#{$Displays} {
+        display: $Displays !important;
+    }
+}
+
+/// Alineaciones flex verticales
+//-------------------- Aling items
+$listAlings: flex-start,
+center,
+flex-end;
+@each $Aligns in $listAlings {
+    //----- Alinear los elementos verticalmente en una fila
+    .align-#{$Aligns} {
+        align-items: $Aligns !important;
+    }
+}
+
+//Alineaciones flex horizontales
+//-------------------- Justify content
+$listJustify: flex-start,
+space-between,
+center,
+flex-end;
+@each $justifys in $listJustify {
+    //----- Alinear los elementos horizontalmente en una fila
+    .justify-#{$justifys} {
+        justify-content: $justifys !important;
+    }
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}

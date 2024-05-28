@@ -1,0 +1,33 @@
+//Estilos para el botón tooltip transversal
+.tooltip{
+    position: relative;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    background: url(../media/icons/ic_helper_text.svg) no-repeat center;
+    display: inline-block;
+    margin-left: 10px;
+    z-index: 3;
+    .tooltip-text{
+        position: absolute;
+        left: 100%;
+        bottom: 100%;
+        width: 170px;
+        height: max-content;
+        border-radius: 10px 10px 10px 0;
+        font-size: 12px;
+        color: $white;
+        padding: 5px 10px;
+        display: none;
+        background-color: $bluePrimary;
+    }
+    &:hover, &:active, &:focus{
+        .tooltip-text{
+            display: block;
+        }
+    }
+    
+    &_space{
+        @extend .tooltip;
+    }
+}

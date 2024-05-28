@@ -1,0 +1,14 @@
+//Estilos para los items en lista con anchor
+.list-itemA{
+    max-height: 400px;
+    overflow: auto;
+    li{
+        a{
+            min-width: 100%;
+            color: $gray;
+            padding: 10px 0px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+    }
+}
