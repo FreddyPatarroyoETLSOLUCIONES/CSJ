@@ -2773,9 +2773,9 @@ header nav.notLoged .btn-back:hover {
   position: fixed;
   width: -moz-max-content;
   width: max-content;
-  left: calc(100% - 146px);
+  right: calc(100% - 146px);
   top: 50%;
-  transform: rotate(-90deg);
+  transform: rotate(-270deg);
   background-color: #004884;
   color: #FFF;
   border-radius: 10px 10px 0 0;

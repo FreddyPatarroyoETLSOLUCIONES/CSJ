@@ -2866,12 +2866,14 @@ export class ResultsComponent implements OnInit, AfterViewInit {
       this.modal_error = true;
     } else {
       let noAnexos = true;
+      let countExistType = 0;
       for (let i = 0; i < this.masivedownload.length; i++) {
         let anexos = this.respuesta.results[this.masivedownload[i]].anexo1;
         if (anexos !== null) {
           noAnexos = false;
           for (let j = 0; j < anexos.length; j++) {
             if (anexos[j].tipo.includes(type)) {
+              countExistType = countExistType + 1;
               let url = anexos[j].public_url;
               if (url != null && url != '') {
                 this.onFile(url);
@@ -2882,6 +2884,9 @@ export class ResultsComponent implements OnInit, AfterViewInit {
       }
       if (noAnexos) {
         this.error = 'No hay archivos adjuntos para descarga masiva';
+        this.modal_error = true;
+      }else if(countExistType == 0){
+        this.error = 'No hay archivos adjuntos de este tipo para descarga masiva';
         this.modal_error = true;
       }
       this.calificarVariosResultadosAutomatico();
