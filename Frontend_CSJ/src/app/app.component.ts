@@ -6644,7 +6644,7 @@ export class AppComponent implements OnInit {
             this.flagMoreOr3 = true;
         }
         this.generalForm.patchValue({
-            textoYContenga: [this.auxOr]
+            textoOContenga: [this.auxOr]
         })
         do {
             this.itemCriteria += 1;
@@ -6660,7 +6660,7 @@ export class AppComponent implements OnInit {
             this.flagMoreOr4 = true;
         }
         this.generalForm.patchValue({
-            textoYContenga: [this.auxOr]
+            textoOContenga: [this.auxOr]
         })
         do {
             this.itemCriteria += 1;
@@ -6676,7 +6676,7 @@ export class AppComponent implements OnInit {
             this.flagMoreOr5 = true;
         }
         this.generalForm.patchValue({
-            textoYContenga: [this.auxOr]
+            textoOContenga: [this.auxOr]
         })
         do {
             this.itemCriteria += 1;
@@ -6692,7 +6692,7 @@ export class AppComponent implements OnInit {
             this.flagMoreOr6 = true;
         }
         this.generalForm.patchValue({
-            textoYContenga: [this.auxOr]
+            textoOContenga: [this.auxOr]
         })
         do {
             this.itemCriteria += 1;
@@ -6901,7 +6901,7 @@ export class AppComponent implements OnInit {
             this.auxEx.push(this.generalForm.get("textoAux1")?.value)
             this.flagMoreEx1 = true;
             this.generalForm.patchValue({
-                textoYContenga: [this.auxEx]
+                textoExcluya: [this.auxEx]
             })
         }
         do {
@@ -6916,10 +6916,10 @@ export class AppComponent implements OnInit {
         if ((this.generalForm.get("textoAux2")?.value != '') && (this.generalForm.get("textoCriterio2")?.value == "Que Excluya")) {
             this.auxEx.push(this.generalForm.get("textoAux2")?.value)
             this.flagMoreEx2 = true;
+            this.generalForm.patchValue({
+                textoExcluya: [this.auxEx]
+            })
         }
-        this.generalForm.patchValue({
-            textoExcluya: [this.auxEx]
-        })
         do {
             this.itemCriteria += 1;
             this.grupoCriterio.push(this.itemCriteria);
@@ -12987,6 +12987,9 @@ export class AppComponent implements OnInit {
         this.temaTresChecks6 = [],
         this.temaTresChecks = [],
         this.temaVocabularioChecks = [],
+        this.completoYQueContenga = 0;
+        this.completoOQueContenga = 0;
+        this.completoQueExcluya = 0;
         this.allItems = [{ id: 6, texto: "Corte Suprema de Justicia" }]
         this.allItemsExtraOrigen = [{ id: 6, texto: "Corte Suprema de Justicia" }]
         this.generalForm.patchValue({

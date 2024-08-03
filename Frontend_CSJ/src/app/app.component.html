@@ -9687,7 +9687,7 @@
                   </div>
                 </div>
                 <div class="col-lg-3">
-                  <div class="form-group"> <label for="InputSerieLYMA" class="form-label">Mes (fuente oficial)</label> 
+                  <div class="form-group-dropdown"> <label for="InputSerieLYMA" class="form-label">Mes (fuente oficial)</label> 
                     <select formControlName="mesFuenteOficial" name="mes" id="mes" class="form-control" placeholder="Mes">
                       <option value=""> Seleccione una opción </option>
                       <ng-container *ngFor="let mes of meses">
@@ -9698,7 +9698,6 @@
                       [data]="meses" (onSelect)="onItemSelectMeses($event)" formControlName="selectedItemsMeses" (onSelectAll)="onSelectAllMeses($event)" 
                       (onDeSelect)="onItemDeSelectMeses($event)" (keydown.enter)="preventAction($event)">
                     </ng-multiselect-dropdown> -->
-    
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -12551,12 +12550,17 @@
                   </div>
                 </div>
                 <div class="col-lg-3">
-                  <div class="form-group"> <label for="InputSerieLYMA" class="form-label">Mes (fuente
-                      oficial)</label> <ng-multiselect-dropdown id="meses" role="search" aria-labelledby="meses" aria-label="meses" [placeholder]="'Todos'" [settings]="dropdownSettingsMeses"
+                  <div class="form-group-dropdown"> <label for="InputSerieLYMA" class="form-label">Mes (fuente oficial)</label> 
+                    <select formControlName="mesFuenteOficial" name="mes" id="mes" class="form-control" placeholder="Mes">
+                      <option value=""> Seleccione una opción </option>
+                      <ng-container *ngFor="let mes of meses">
+                        <option value="{{mes.id}}"> {{mes.value}} </option>
+                      </ng-container>
+                    </select>
+                    <!-- <ng-multiselect-dropdown id="meses" role="search" aria-labelledby="meses" aria-label="meses" [placeholder]="'Todos'" [settings]="dropdownSettingsMeses"
                       [data]="meses" (onSelect)="onItemSelectMeses($event)" formControlName="selectedItemsMeses" (onSelectAll)="onSelectAllMeses($event)" 
                       (onDeSelect)="onItemDeSelectMeses($event)" (keydown.enter)="preventAction($event)">
-                    </ng-multiselect-dropdown>
-    
+                    </ng-multiselect-dropdown> -->
                   </div>
                 </div>
                 <div class="col-lg-3">

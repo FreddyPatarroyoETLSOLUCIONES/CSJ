@@ -2662,12 +2662,23 @@ export class ResultsComponent implements OnInit, AfterViewInit {
   }
 
   printPDF(report: any, index:any = null) {
-    let values_reports;
-    
+    let values_reports: any[];
+    let itemTransaccion: any = {};
+
     values_reports = this.validateExtraOrigen();
+    
+    if(this.transcripcion){
+      values_reports.push('"'+'transcripcion'+'"');
+      itemTransaccion = {
+        transcripcion : report.doc_ocr
+      };
+    }
+    
+    report =  Object.assign(report, itemTransaccion);
 
     console.log('values_reports', values_reports);
     console.log('report', report);
+    
     
     
     let resultJson =
